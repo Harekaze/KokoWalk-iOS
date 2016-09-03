@@ -38,6 +38,8 @@ import UIKit
 
 class CharacterCell: UICollectionViewCell {
 	
+	@IBOutlet weak var iconImageView: UIImageView!
+	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		let borderLayer = CAShapeLayer()
@@ -46,7 +48,7 @@ class CharacterCell: UICollectionViewCell {
 		borderLayer.fillColor = UIColor(hue:0.00, saturation:0.00, brightness:0.84, alpha:1.00).cgColor
 		borderLayer.path = UIBezierPath(rect: self.frame).cgPath
 		borderLayer.lineWidth = 20
-		layer.addSublayer(borderLayer)
+		layer.insertSublayer(borderLayer, at: 0)
 	}
 	
 }

@@ -38,7 +38,25 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class CharacterModeSelectionViewController: UICollectionViewController {
+class CharacterModeSelectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+	private let dataSource: [String] = [
+		"menu_item_koko",
+		"menu_item_mi",
+		"menu_item_irizaki",
+		"menu_item_maron",
+		"menu_item_mike",
+		"menu_item_siro",
+		"menu_item_zona",
+		"menu_item_mariko_doujou",
+		"menu_item_mei_doujou",
+		"menu_item_koko_doujou",
+		"menu_item_koko_doujou_hard",
+		"menu_item_oyabun_doujou",
+		"menu_item_nop",
+		"menu_item_nop",
+		"menu_item_nop",
+	]
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -74,14 +92,21 @@ class CharacterModeSelectionViewController: UICollectionViewController {
 
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		// #warning Incomplete implementation, return the number of items
-		return 4
+		return dataSource.count
 	}
 
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		if dataSource[indexPath.row] == "menu_item_mariko_doujou" {
+			return CGSize(width: 234, height: 78)
+		}
+		return CGSize(width: 78, height: 78)
+	}
+	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
 	
-		// Configure the cell
-	
+		cell.iconImageView.image = UIImage(named: dataSource[indexPath.row])
+		
 		return cell
 	}
 
