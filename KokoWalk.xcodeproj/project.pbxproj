@@ -17,6 +17,8 @@
 		9E9179481D7B288000D572EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9179461D7B288000D572EA /* LaunchScreen.storyboard */; };
 		9E9179531D7B288100D572EA /* KokoWalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9179521D7B288100D572EA /* KokoWalkTests.swift */; };
 		9E91795E1D7B288100D572EA /* KokoWalkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91795D1D7B288100D572EA /* KokoWalkUITests.swift */; };
+		9E91796C1D7B33D200D572EA /* CharacterModeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91796B1D7B33D200D572EA /* CharacterModeSelectionViewController.swift */; };
+		9E91796E1D7B34DD00D572EA /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91796D1D7B34DD00D572EA /* CharacterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		9E9179591D7B288100D572EA /* KokoWalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KokoWalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E91795D1D7B288100D572EA /* KokoWalkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KokoWalkUITests.swift; sourceTree = "<group>"; };
 		9E91795F1D7B288100D572EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E91796B1D7B33D200D572EA /* CharacterModeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterModeSelectionViewController.swift; sourceTree = "<group>"; };
+		9E91796D1D7B34DD00D572EA /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				9E91793B1D7B288000D572EA /* Actions.sks */,
 				9E91793D1D7B288000D572EA /* GameScene.swift */,
 				9E91793F1D7B288000D572EA /* GameViewController.swift */,
+				9E91796B1D7B33D200D572EA /* CharacterModeSelectionViewController.swift */,
+				9E91796D1D7B34DD00D572EA /* CharacterCell.swift */,
 				9E9179411D7B288000D572EA /* Main.storyboard */,
 				9E9179441D7B288000D572EA /* Assets.xcassets */,
 				9E9179461D7B288000D572EA /* LaunchScreen.storyboard */,
@@ -270,6 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E91796E1D7B34DD00D572EA /* CharacterCell.swift in Sources */,
+				9E91796C1D7B33D200D572EA /* CharacterModeSelectionViewController.swift in Sources */,
 				9E91793E1D7B288000D572EA /* GameScene.swift in Sources */,
 				9E9179401D7B288000D572EA /* GameViewController.swift in Sources */,
 				9E9179381D7B288000D572EA /* AppDelegate.swift in Sources */,
