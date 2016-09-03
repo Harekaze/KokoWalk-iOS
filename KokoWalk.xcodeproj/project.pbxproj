@@ -1,0 +1,542 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9E9179381D7B288000D572EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9179371D7B288000D572EA /* AppDelegate.swift */; };
+		9E91793A1D7B288000D572EA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9E9179391D7B288000D572EA /* GameScene.sks */; };
+		9E91793C1D7B288000D572EA /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9E91793B1D7B288000D572EA /* Actions.sks */; };
+		9E91793E1D7B288000D572EA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91793D1D7B288000D572EA /* GameScene.swift */; };
+		9E9179401D7B288000D572EA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91793F1D7B288000D572EA /* GameViewController.swift */; };
+		9E9179431D7B288000D572EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9179411D7B288000D572EA /* Main.storyboard */; };
+		9E9179451D7B288000D572EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9179441D7B288000D572EA /* Assets.xcassets */; };
+		9E9179481D7B288000D572EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9179461D7B288000D572EA /* LaunchScreen.storyboard */; };
+		9E9179531D7B288100D572EA /* KokoWalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9179521D7B288100D572EA /* KokoWalkTests.swift */; };
+		9E91795E1D7B288100D572EA /* KokoWalkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91795D1D7B288100D572EA /* KokoWalkUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9E91794F1D7B288100D572EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E91792C1D7B288000D572EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E9179331D7B288000D572EA;
+			remoteInfo = KokoWalk;
+		};
+		9E91795A1D7B288100D572EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E91792C1D7B288000D572EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E9179331D7B288000D572EA;
+			remoteInfo = KokoWalk;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9E9179341D7B288000D572EA /* KokoWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KokoWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9179371D7B288000D572EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9E9179391D7B288000D572EA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		9E91793B1D7B288000D572EA /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		9E91793D1D7B288000D572EA /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		9E91793F1D7B288000D572EA /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		9E9179421D7B288000D572EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9E9179441D7B288000D572EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9E9179471D7B288000D572EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9E9179491D7B288000D572EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E91794E1D7B288100D572EA /* KokoWalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KokoWalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9179521D7B288100D572EA /* KokoWalkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KokoWalkTests.swift; sourceTree = "<group>"; };
+		9E9179541D7B288100D572EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E9179591D7B288100D572EA /* KokoWalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KokoWalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E91795D1D7B288100D572EA /* KokoWalkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KokoWalkUITests.swift; sourceTree = "<group>"; };
+		9E91795F1D7B288100D572EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9E9179311D7B288000D572EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E91794B1D7B288100D572EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9179561D7B288100D572EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9E91792B1D7B288000D572EA = {
+			isa = PBXGroup;
+			children = (
+				9E9179361D7B288000D572EA /* KokoWalk */,
+				9E9179511D7B288100D572EA /* KokoWalkTests */,
+				9E91795C1D7B288100D572EA /* KokoWalkUITests */,
+				9E9179351D7B288000D572EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9E9179351D7B288000D572EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E9179341D7B288000D572EA /* KokoWalk.app */,
+				9E91794E1D7B288100D572EA /* KokoWalkTests.xctest */,
+				9E9179591D7B288100D572EA /* KokoWalkUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9E9179361D7B288000D572EA /* KokoWalk */ = {
+			isa = PBXGroup;
+			children = (
+				9E9179371D7B288000D572EA /* AppDelegate.swift */,
+				9E9179391D7B288000D572EA /* GameScene.sks */,
+				9E91793B1D7B288000D572EA /* Actions.sks */,
+				9E91793D1D7B288000D572EA /* GameScene.swift */,
+				9E91793F1D7B288000D572EA /* GameViewController.swift */,
+				9E9179411D7B288000D572EA /* Main.storyboard */,
+				9E9179441D7B288000D572EA /* Assets.xcassets */,
+				9E9179461D7B288000D572EA /* LaunchScreen.storyboard */,
+				9E9179491D7B288000D572EA /* Info.plist */,
+			);
+			path = KokoWalk;
+			sourceTree = "<group>";
+		};
+		9E9179511D7B288100D572EA /* KokoWalkTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E9179521D7B288100D572EA /* KokoWalkTests.swift */,
+				9E9179541D7B288100D572EA /* Info.plist */,
+			);
+			path = KokoWalkTests;
+			sourceTree = "<group>";
+		};
+		9E91795C1D7B288100D572EA /* KokoWalkUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9E91795D1D7B288100D572EA /* KokoWalkUITests.swift */,
+				9E91795F1D7B288100D572EA /* Info.plist */,
+			);
+			path = KokoWalkUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E9179331D7B288000D572EA /* KokoWalk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9179621D7B288100D572EA /* Build configuration list for PBXNativeTarget "KokoWalk" */;
+			buildPhases = (
+				9E9179301D7B288000D572EA /* Sources */,
+				9E9179311D7B288000D572EA /* Frameworks */,
+				9E9179321D7B288000D572EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KokoWalk;
+			productName = KokoWalk;
+			productReference = 9E9179341D7B288000D572EA /* KokoWalk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9E91794D1D7B288100D572EA /* KokoWalkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9179651D7B288100D572EA /* Build configuration list for PBXNativeTarget "KokoWalkTests" */;
+			buildPhases = (
+				9E91794A1D7B288100D572EA /* Sources */,
+				9E91794B1D7B288100D572EA /* Frameworks */,
+				9E91794C1D7B288100D572EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E9179501D7B288100D572EA /* PBXTargetDependency */,
+			);
+			name = KokoWalkTests;
+			productName = KokoWalkTests;
+			productReference = 9E91794E1D7B288100D572EA /* KokoWalkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9E9179581D7B288100D572EA /* KokoWalkUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9179681D7B288100D572EA /* Build configuration list for PBXNativeTarget "KokoWalkUITests" */;
+			buildPhases = (
+				9E9179551D7B288100D572EA /* Sources */,
+				9E9179561D7B288100D572EA /* Frameworks */,
+				9E9179571D7B288100D572EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E91795B1D7B288100D572EA /* PBXTargetDependency */,
+			);
+			name = KokoWalkUITests;
+			productName = KokoWalkUITests;
+			productReference = 9E9179591D7B288100D572EA /* KokoWalkUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9E91792C1D7B288000D572EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Harekaze;
+				TargetAttributes = {
+					9E9179331D7B288000D572EA = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					9E91794D1D7B288100D572EA = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9E9179331D7B288000D572EA;
+					};
+					9E9179581D7B288100D572EA = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9E9179331D7B288000D572EA;
+					};
+				};
+			};
+			buildConfigurationList = 9E91792F1D7B288000D572EA /* Build configuration list for PBXProject "KokoWalk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9E91792B1D7B288000D572EA;
+			productRefGroup = 9E9179351D7B288000D572EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E9179331D7B288000D572EA /* KokoWalk */,
+				9E91794D1D7B288100D572EA /* KokoWalkTests */,
+				9E9179581D7B288100D572EA /* KokoWalkUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E9179321D7B288000D572EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9179431D7B288000D572EA /* Main.storyboard in Resources */,
+				9E91793A1D7B288000D572EA /* GameScene.sks in Resources */,
+				9E9179451D7B288000D572EA /* Assets.xcassets in Resources */,
+				9E9179481D7B288000D572EA /* LaunchScreen.storyboard in Resources */,
+				9E91793C1D7B288000D572EA /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E91794C1D7B288100D572EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9179571D7B288100D572EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E9179301D7B288000D572EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E91793E1D7B288000D572EA /* GameScene.swift in Sources */,
+				9E9179401D7B288000D572EA /* GameViewController.swift in Sources */,
+				9E9179381D7B288000D572EA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E91794A1D7B288100D572EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9179531D7B288100D572EA /* KokoWalkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9179551D7B288100D572EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E91795E1D7B288100D572EA /* KokoWalkUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9E9179501D7B288100D572EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E9179331D7B288000D572EA /* KokoWalk */;
+			targetProxy = 9E91794F1D7B288100D572EA /* PBXContainerItemProxy */;
+		};
+		9E91795B1D7B288100D572EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E9179331D7B288000D572EA /* KokoWalk */;
+			targetProxy = 9E91795A1D7B288100D572EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9E9179411D7B288000D572EA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E9179421D7B288000D572EA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9E9179461D7B288000D572EA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E9179471D7B288000D572EA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9E9179601D7B288100D572EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9E9179611D7B288100D572EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9E9179631D7B288100D572EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KokoWalk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9E9179641D7B288100D572EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KokoWalk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		9E9179661D7B288100D572EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KokoWalkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KokoWalk.app/KokoWalk";
+			};
+			name = Debug;
+		};
+		9E9179671D7B288100D572EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KokoWalkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KokoWalk.app/KokoWalk";
+			};
+			name = Release;
+		};
+		9E9179691D7B288100D572EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = KokoWalkUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalkUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = KokoWalk;
+			};
+			name = Debug;
+		};
+		9E91796A1D7B288100D572EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = KokoWalkUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalkUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = KokoWalk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E91792F1D7B288000D572EA /* Build configuration list for PBXProject "KokoWalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9179601D7B288100D572EA /* Debug */,
+				9E9179611D7B288100D572EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E9179621D7B288100D572EA /* Build configuration list for PBXNativeTarget "KokoWalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9179631D7B288100D572EA /* Debug */,
+				9E9179641D7B288100D572EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9E9179651D7B288100D572EA /* Build configuration list for PBXNativeTarget "KokoWalkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9179661D7B288100D572EA /* Debug */,
+				9E9179671D7B288100D572EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9E9179681D7B288100D572EA /* Build configuration list for PBXNativeTarget "KokoWalkUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9179691D7B288100D572EA /* Debug */,
+				9E91796A1D7B288100D572EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9E91792C1D7B288000D572EA /* Project object */;
+}
