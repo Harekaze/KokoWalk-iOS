@@ -48,6 +48,12 @@ class GameScene: SKScene {
 	
 	override func sceneDidLoad() {
 
+		// Set background image
+		let backgroundNode = SKSpriteNode(imageNamed: "masiro_room")
+		backgroundNode.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+		backgroundNode.name = "Background"
+		self.addChild(backgroundNode)
+
 		self.lastUpdateTime = 0
 		
 		// Get label node from scene and store it for use later
