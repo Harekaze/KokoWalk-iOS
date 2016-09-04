@@ -1,6 +1,6 @@
 /**
 *
-* CharacterModeSelectionViewController.swift
+* KokoMainViewController.swift
 * KokoWalk
 * Created by Yuki MIZUNO on 2016/09/04.
 *
@@ -35,11 +35,14 @@
 */
 
 import UIKit
+import SpriteKit
+import GameplayKit
 
 private let reuseIdentifier = "Cell"
 
-class CharacterModeSelectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class KokoMainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+	// MARK: - Private constant values
 	private let dataSource: [String] = [
 		"menu_item_koko",
 		"menu_item_mi",
@@ -58,13 +61,40 @@ class CharacterModeSelectionViewController: UICollectionViewController, UICollec
 		"menu_item_nop",
 	]
 
+	// MARK: - Interface Builder outlets
+	
+	@IBOutlet weak var sceneView: SKView!
+	@IBOutlet weak var characterModeCollectionView: UICollectionView!
+	
+	// MARK: - View initialization
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		// Uncomment the following line to preserve selection between presentations
-		// self.clearsSelectionOnViewWillAppear = false
+		self.characterModeCollectionView.delegate = self
+		
+		if let scene = GKScene(fileNamed: "GameScene") {
+			
+			// Get the SKScene from the loaded GKScene
+			if let sceneNode = scene.rootNode as! GameScene? {
+				
+				// Copy gameplay related content over to the scene
+				sceneNode.entities = scene.entities
+				sceneNode.graphs = scene.graphs
+				
+				// Set the scale mode to scale to fit the window
+				sceneNode.scaleMode = .aspectFill
+				
+				// Present the scene
+				sceneView.presentScene(sceneNode)
+				
+				sceneView.ignoresSiblingOrder = true
+				
+				sceneView.showsFPS = true
+				sceneView.showsNodeCount = true
+			}
+		}
 
-		// Do any additional setup after loading the view.
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -84,13 +114,13 @@ class CharacterModeSelectionViewController: UICollectionViewController, UICollec
 
 	// MARK: UICollectionViewDataSource
 
-	override func numberOfSections(in collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		// #warning Incomplete implementation, return the number of sections
 		return 1
 	}
 
 
-	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		// #warning Incomplete implementation, return the number of items
 		return dataSource.count
 	}
@@ -102,7 +132,8 @@ class CharacterModeSelectionViewController: UICollectionViewController, UICollec
 		return CGSize(width: 78, height: 78)
 	}
 	
-	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
 	
 		cell.iconImageView.image = UIImage(named: dataSource[indexPath.row])
