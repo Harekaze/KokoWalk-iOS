@@ -60,6 +60,9 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		"menu_item_nop",
 		"menu_item_nop",
 	]
+	
+	// MARK: - Private instance fields
+	private var gameScene: GameScene!
 
 	// MARK: - Interface Builder outlets
 	
@@ -77,6 +80,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 			
 			// Get the SKScene from the loaded GKScene
 			if let sceneNode = scene.rootNode as! GameScene? {
+				self.gameScene = sceneNode
 				
 				// Copy gameplay related content over to the scene
 				sceneNode.entities = scene.entities
@@ -142,6 +146,10 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	}
 
 	// MARK: UICollectionViewDelegate
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		gameScene.addCharacter(name: "")
+	}
 
 	/*
 	// Uncomment this method to specify if the specified item should be highlighted during tracking

@@ -71,6 +71,19 @@ class GameScene: SKScene {
 		}
 	}
 	
+	// MARK: - Character addition
+	
+	func addCharacter(name: String) {
+		let backgroundNode = SKSpriteNode(imageNamed: "asisu")
+		backgroundNode.position = CGPoint(x: -215, y: 315)
+		backgroundNode.name = "Charater"
+		backgroundNode.scale(to: CGSize(width: 268, height: 508))
+		backgroundNode.run(SKAction.init(named: "Join")!, withKey: "fadeInOut")
+		self.addChild(backgroundNode)
+	}
+	
+	
+	// MARK: - Touch event
 	
 	func touchDown(atPoint pos : CGPoint) {
 		if let n = self.spinnyNode?.copy() as! SKShapeNode? {
