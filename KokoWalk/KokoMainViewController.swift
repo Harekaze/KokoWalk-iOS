@@ -116,6 +116,24 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	}
 	*/
 
+	
+	// MARK: - Device rotation
+	
+	override var shouldAutorotate: Bool {
+		return true
+	}
+	
+	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+		return .portrait
+	}
+	
+	// MARK: - Status bar
+	
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
+
+	
 	// MARK: UICollectionViewDataSource
 
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
