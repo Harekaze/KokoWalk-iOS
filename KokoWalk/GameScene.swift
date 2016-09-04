@@ -74,12 +74,25 @@ class GameScene: SKScene {
 	// MARK: - Character addition
 	
 	func addCharacter(name: String) {
-		let backgroundNode = SKSpriteNode(imageNamed: "asisu")
-		backgroundNode.position = CGPoint(x: -215, y: 315)
-		backgroundNode.name = "Charater"
-		backgroundNode.scale(to: CGSize(width: 268, height: 508))
-		backgroundNode.run(SKAction.init(named: "Join")!, withKey: "fadeInOut")
-		self.addChild(backgroundNode)
+		let characterNode = SKSpriteNode(imageNamed: "asisu")
+		characterNode.position = CGPoint(x: -215, y: 315)
+		characterNode.name = "Charater"
+		characterNode.scale(to: CGSize(width: 268, height: 508))
+		characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
+		characterNode.run(SKAction.repeatForever(
+			SKAction.sequence([SKAction.wait(forDuration: 1.0),
+			                   SKAction.move(by: CGVector(dx: 100, dy: 200), duration: 1.6)
+				])
+		))
+		
+		characterNode.run(SKAction.repeatForever(
+			SKAction.sequence([SKAction.wait(forDuration: 1.0),
+			                   SKAction.scaleX(by: -1, y: 1, duration: 0),
+			                   SKAction.init(named: "KokoWalk")!
+				])
+		))
+
+		self.addChild(characterNode)
 	}
 	
 	
