@@ -45,6 +45,7 @@ class GameScene: SKScene {
 	private var lastUpdateTime : TimeInterval = 0
 	private var label : SKLabelNode?
 	private var spinnyNode : SKShapeNode?
+	private var characterNode: SKSpriteNode?
 	private let randomX = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -250, highestValue: 250)
 	private let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -350, highestValue: -100)
 
@@ -60,17 +61,13 @@ class GameScene: SKScene {
 			label.run(SKAction.fadeIn(withDuration: 2.0))
 		}
 		
-		// Create shape node to use during mouse interaction
-		let w = (self.size.width + self.size.height) * 0.05
-		self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-		
-		if let spinnyNode = self.spinnyNode {
-			spinnyNode.lineWidth = 2.5
-			
-			spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)))
-			spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-											  SKAction.fadeOut(withDuration: 0.5),
-											  SKAction.removeFromParent()]))
+		self.characterNode = SKSpriteNode(imageNamed: "asisu")
+
+		if let characterNode = self.characterNode {
+			characterNode.position = CGPoint(x: -215, y: 315)
+			characterNode.name = "Charater"
+			characterNode.scale(to: CGSize(width: 268, height: 508))
+			characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
 		}
 	}
 	
@@ -90,12 +87,8 @@ class GameScene: SKScene {
 	}
 	
 	func addCharacter(name: String) {
-		let characterNode = SKSpriteNode(imageNamed: "asisu")
-		characterNode.position = CGPoint(x: -215, y: 315)
-		characterNode.name = "Charater"
-		characterNode.scale(to: CGSize(width: 268, height: 508))
-		characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
-		
+		let characterNode = self.characterNode?.copy() as! SKSpriteNode
+
 		characterNode.run(
 			SKAction.repeatForever(SKAction.sequence([
 				SKAction.wait(forDuration: 1.6),
