@@ -71,10 +71,8 @@ class WalkingState: CharacterState {
 		let point = CGPoint(x: CGFloat(randomX.nextInt()), y: CGFloat(randomY.nextInt()))
 		let flip = (point.x - characterNode.position.x) * characterNode.xScale > 0
 
-		characterNode.run(SKAction.move(to: point, duration: 1.5))
 		characterNode.run(
 			SKAction.sequence([
-				SKAction.scaleX(by: flip ? -1 : 1, y: 1, duration: 0),
 				SKAction.init(named: "KokoWalk")!,
 				SKAction.run {
 					self.stateMachine?.enter(StoppingState.self)
@@ -82,6 +80,9 @@ class WalkingState: CharacterState {
 				}
 				])
 		)
+		characterNode.run(SKAction.move(to: point, duration: 1.5))
+		characterNode.run(SKAction.scaleX(by: flip ? -1 : 1, y: 1, duration: 0))
+		characterNode.zPosition = point.y / -100
 
 	}
 	
@@ -95,7 +96,11 @@ class StoppingState: CharacterState {
 		characterNode.run(SKAction.sequence([
 			SKAction.wait(forDuration: 1.6),
 			SKAction.run {
-				self.stateMachine?.enter(WalkingState.self)
+				if randomX.nextInt() < 0 {
+					self.stateMachine?.enter(WalkingState.self)
+				} else {
+					self.stateMachine?.enter(ActionState.self)
+				}
 				self.stateMachine?.update(deltaTime: 1.6)
 			},
 			]))
@@ -104,7 +109,14 @@ class StoppingState: CharacterState {
 
 class ActionState: CharacterState {
 	override func update(deltaTime seconds: TimeInterval) {
-		
+		characterNode.texture = SKTexture(imageNamed: "koko_sensei")
+		characterNode.run(SKAction.sequence([
+			SKAction.wait(forDuration: 1.6),
+			SKAction.run {
+				self.stateMachine?.enter(WalkingState.self)
+				self.stateMachine?.update(deltaTime: 1.6)
+			},
+			]))
 	}
 	
 	override func isValidNextState(_ stateClass: AnyClass) -> Bool {

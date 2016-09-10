@@ -87,6 +87,7 @@ class GameScene: SKScene {
 			JoiningState(characterNode: characterNode),
 			WalkingState(characterNode: characterNode),
 			StoppingState(characterNode: characterNode),
+			ActionState(characterNode: characterNode),
 			]
 		)
 		stateMachine.enter(JoiningState.self)
