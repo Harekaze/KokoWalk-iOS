@@ -208,6 +208,7 @@
 				TargetAttributes = {
 					9E9179331D7B288000D572EA = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = NFV2G334ZW;
 						ProvisioningStyle = Automatic;
 					};
 					9E91794D1D7B288100D572EA = {
@@ -432,6 +433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NFV2G334ZW;
 				INFOPLIST_FILE = KokoWalk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -446,6 +448,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuki Mizuno (NFV2G334ZW)";
+				DEVELOPMENT_TEAM = NFV2G334ZW;
 				INFOPLIST_FILE = KokoWalk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
