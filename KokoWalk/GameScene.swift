@@ -43,20 +43,11 @@ class GameScene: SKScene {
 	var graphs = [String : GKGraph]()
 	
 	private var lastUpdateTime : TimeInterval = 0
-	private var label : SKLabelNode?
-	private var spinnyNode : SKShapeNode?
 	private var characterNode: SKSpriteNode?
 	
 	override func sceneDidLoad() {
 
 		self.lastUpdateTime = 0
-		
-		// Get label node from scene and store it for use later
-		self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-		if let label = self.label {
-			label.alpha = 0.0
-			label.run(SKAction.fadeIn(withDuration: 2.0))
-		}
 		
 		self.characterNode = SKSpriteNode(imageNamed: "asisu")
 
