@@ -40,6 +40,7 @@ import GameplayKit
 class GameScene: SKScene {
 	
 	var stateMachines = [GKStateMachine]()
+	var characterNodes = [SKSpriteNode]()
 	var graphs = [String : GKGraph]()
 	
 	private var lastUpdateTime : TimeInterval = 0
@@ -84,11 +85,20 @@ class GameScene: SKScene {
 		)
 		stateMachine.enter(JoiningState.self)
 		self.stateMachines.append(stateMachine)
-
+		self.characterNodes.append(characterNode)
 
 		self.addChild(characterNode)
 	}
 	
+	// MARK: - Character deletion
+	
+	func clearAll() {
+		for characterNode in self.characterNodes {
+			characterNode.removeFromParent()
+		}
+		characterNodes.removeAll()
+		stateMachines.removeAll()
+	}
 	
 	// MARK: - Frame update
 	

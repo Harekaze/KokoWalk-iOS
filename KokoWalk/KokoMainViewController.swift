@@ -69,6 +69,12 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	@IBOutlet weak var sceneView: SKView!
 	@IBOutlet weak var characterModeCollectionView: UICollectionView!
 	
+	// MARK: - Interface Builder actions
+	
+	@IBAction func handleClearButton(_ sender: UIButton) {
+		self.gameScene.clearAll()
+	}
+	
 	// MARK: - View initialization
 	
 	override func viewDidLoad() {
