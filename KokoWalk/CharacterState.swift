@@ -96,7 +96,7 @@ class StoppingState: CharacterState {
 		characterNode.run(SKAction.sequence([
 			SKAction.wait(forDuration: 1.6),
 			SKAction.run {
-				if randomX.nextInt() < 0 {
+				if randomX.nextInt() < 100 {
 					self.stateMachine?.enter(WalkingState.self)
 				} else {
 					self.stateMachine?.enter(ActionState.self)
