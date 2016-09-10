@@ -51,11 +51,11 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		"menu_item_mike",
 		"menu_item_siro",
 		"menu_item_zona",
-		"menu_item_mariko_doujou",
-		"menu_item_mei_doujou",
-		"menu_item_koko_doujou",
-		"menu_item_koko_doujou_hard",
-		"menu_item_oyabun_doujou",
+//		"menu_item_mariko_doujou",
+//		"menu_item_mei_doujou",
+//		"menu_item_koko_doujou",
+//		"menu_item_koko_doujou_hard",
+//		"menu_item_oyabun_doujou",
 		"menu_item_nop",
 		"menu_item_nop",
 		"menu_item_nop",
@@ -165,7 +165,11 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	// MARK: UICollectionViewDelegate
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		gameScene.addCharacter(name: "koko")
+		let name = dataSource[indexPath.row]
+		if name == "menu_item_nop" {
+			return
+		}
+		gameScene.addCharacter(name: name)
 	}
 
 	/*
