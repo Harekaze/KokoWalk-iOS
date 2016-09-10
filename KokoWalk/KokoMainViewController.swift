@@ -165,7 +165,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	// MARK: UICollectionViewDelegate
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		gameScene.addCharacter(name: "")
+		gameScene.addCharacter(name: "koko")
 	}
 
 	/*

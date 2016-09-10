@@ -40,6 +40,8 @@ import GameplayKit
 let randomX = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -250, highestValue: 250)
 let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -350, highestValue: -100)
 
+let kokoActionImages = ["asisu", "hai", "koko_def", "koko_meshi", "koko_sensei", "koko_uta", "koko_zinb", "koko_zinbabue2", "kokomi_4", "kokotto", "naki_B1", "naki_B2", "orya", "ra_men", "sengen", "tettere_", "zinbabues"]
+
 
 class CharacterState: GKState {
 	let characterNode: SKSpriteNode
@@ -63,9 +65,21 @@ class JoiningState: CharacterState {
 	override func isValidNextState(_ stateClass: AnyClass) -> Bool {
 		return stateClass == WalkingState.self
 	}
+	
+	override func didEnter(from previousState: GKState?) {
+		let imageName = GKRandomSource().arrayByShufflingObjects(in: kokoActionImages).first as! String
+		characterNode.texture = SKTexture(imageNamed: imageName)
+	}
 }
 
 class WalkingState: CharacterState {
+	
+	private var walkAction: SKAction!
+	
+	override init(characterNode: SKSpriteNode) {
+		super.init(characterNode: characterNode)
+		self.walkAction = SKAction.init(named: "KokoWalk")!
+	}
 
 	override func update(deltaTime seconds: TimeInterval) {
 		let point = CGPoint(x: CGFloat(randomX.nextInt()), y: CGFloat(randomY.nextInt()))
@@ -73,7 +87,7 @@ class WalkingState: CharacterState {
 
 		characterNode.run(
 			SKAction.sequence([
-				SKAction.init(named: "KokoWalk")!,
+				walkAction,
 				SKAction.run {
 					self.stateMachine?.enter(StoppingState.self)
 					self.stateMachine?.update(deltaTime: 1.6)
@@ -108,8 +122,14 @@ class StoppingState: CharacterState {
 }
 
 class ActionState: CharacterState {
+	
+	private var actions = [String]()
+	
 	override func update(deltaTime seconds: TimeInterval) {
-		characterNode.texture = SKTexture(imageNamed: "koko_sensei")
+		if actions.isEmpty {
+			actions = GKRandomSource().arrayByShufflingObjects(in: kokoActionImages) as! [String]
+		}
+		characterNode.texture = SKTexture(imageNamed: actions.popLast()!)
 		characterNode.run(SKAction.sequence([
 			SKAction.wait(forDuration: 1.6),
 			SKAction.run {
