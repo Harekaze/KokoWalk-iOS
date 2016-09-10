@@ -103,6 +103,8 @@ class WalkingState: CharacterState {
 	override func update(deltaTime seconds: TimeInterval) {
 		let point = CGPoint(x: CGFloat(randomX.nextInt()), y: CGFloat(randomY.nextInt()))
 		let flip = (point.x - characterNode.position.x) * characterNode.xScale > 0
+		let move = SKAction.move(to: point, duration: 1.5)
+		move.timingMode = .easeInEaseOut
 
 		characterNode.run(
 			SKAction.sequence([
@@ -113,7 +115,7 @@ class WalkingState: CharacterState {
 				}
 				])
 		)
-		characterNode.run(SKAction.move(to: point, duration: 1.5))
+		characterNode.run(move)
 		characterNode.run(SKAction.scaleX(by: flip ? -1 : 1, y: 1, duration: 0))
 		characterNode.zPosition = point.y / -100
 
