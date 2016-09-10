@@ -40,7 +40,26 @@ import GameplayKit
 let randomX = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -250, highestValue: 250)
 let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -350, highestValue: -100)
 
-let kokoActionImages = ["asisu", "hai", "koko_def", "koko_meshi", "koko_sensei", "koko_uta", "koko_zinb", "koko_zinbabue2", "kokomi_4", "kokotto", "naki_B1", "naki_B2", "orya", "ra_men", "sengen", "tettere_", "zinbabues"]
+let actionImages: [String: [String]] = [
+	"menu_item_koko": ["asisu", "hai", "koko_def", "koko_meshi", "koko_sensei", "koko_uta", "koko_zinb", "koko_zinbabue2", "kokomi_4", "kokotto", "naki_B1", "naki_B2", "orya", "ra_men", "sengen", "tettere_", "zinbabues"],
+	"menu_item_mi": ["doitujin", "doitujin_", "doitujin2"],
+	"menu_item_siro": ["siro_oko", "siro_same1", "siro_same2", "mayone-zu", "mayo2"],
+	"menu_item_zona": ["zona_p"],
+	"menu_item_irizaki": ["koufun", "may_p", "may_waki", "uttyae1", "uttyae2"],
+	"menu_item_mike": ["mike_banana", "mike_boushi", "mike_hai"],
+	"menu_item_maron": ["maron_maron", "motto_teyande", "teyande"]
+		
+]
+
+let walk: [String: String] = [
+	"menu_item_koko": "KokoWalk",
+	"menu_item_mi": "MiWalk",
+	"menu_item_siro": "SiroWalk",
+	"menu_item_zona": "ZonaWalk",
+	"menu_item_irizaki": "MayWalk",
+	"menu_item_mike": "MikeWalk",
+	"menu_item_maron": "MaronWalk"
+]
 
 
 class CharacterState: GKState {
@@ -67,7 +86,7 @@ class JoiningState: CharacterState {
 	}
 	
 	override func didEnter(from previousState: GKState?) {
-		let imageName = GKRandomSource().arrayByShufflingObjects(in: kokoActionImages).first as! String
+		let imageName = GKRandomSource().arrayByShufflingObjects(in: actionImages[characterNode.name!]!).first as! String
 		characterNode.texture = SKTexture(imageNamed: imageName)
 	}
 }
@@ -78,7 +97,7 @@ class WalkingState: CharacterState {
 	
 	override init(characterNode: SKSpriteNode) {
 		super.init(characterNode: characterNode)
-		self.walkAction = SKAction.init(named: "KokoWalk")!
+		self.walkAction = SKAction.init(named: walk[characterNode.name!]!)!
 	}
 
 	override func update(deltaTime seconds: TimeInterval) {
@@ -127,7 +146,7 @@ class ActionState: CharacterState {
 	
 	override func update(deltaTime seconds: TimeInterval) {
 		if actions.isEmpty {
-			actions = GKRandomSource().arrayByShufflingObjects(in: kokoActionImages) as! [String]
+			actions = GKRandomSource().arrayByShufflingObjects(in: actionImages[characterNode.name!]!) as! [String]
 		}
 		characterNode.texture = SKTexture(imageNamed: actions.popLast()!)
 		characterNode.run(SKAction.sequence([
