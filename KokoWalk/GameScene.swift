@@ -39,16 +39,13 @@ import GameplayKit
 
 class GameScene: SKScene {
 	
-	var entities = [GKEntity]()
+	var stateMachines = [GKStateMachine]()
 	var graphs = [String : GKGraph]()
 	
 	private var lastUpdateTime : TimeInterval = 0
 	private var label : SKLabelNode?
 	private var spinnyNode : SKShapeNode?
 	private var characterNode: SKSpriteNode?
-	private let randomX = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -250, highestValue: 250)
-	private let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -350, highestValue: -100)
-
 	
 	override func sceneDidLoad() {
 
@@ -69,35 +66,32 @@ class GameScene: SKScene {
 			characterNode.scale(to: CGSize(width: 268, height: 508))
 			characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
 		}
+		
+		Timer.scheduledTimer(withTimeInterval: 1.6, repeats: true, block: {
+			timer in
+			for stateMachine in self.stateMachines {
+				if stateMachine.currentState is JoiningState {
+					stateMachine.update(deltaTime: 0)
+				}
+			}
+		})
+
 	}
 	
 	// MARK: - Character addition
-	func actions(characterNode: SKSpriteNode!) {
-
-		let point = CGPoint(x: CGFloat(randomX.nextInt()), y: CGFloat(randomY.nextInt()))
-		let flip = (point.x - characterNode.position.x) * characterNode.xScale > 0
-
-		characterNode.run(SKAction.move(to: point, duration: 1.5))
-		characterNode.run(
-			SKAction.sequence([
-				SKAction.scaleX(by: flip ? -1 : 1, y: 1, duration: 0),
-				SKAction.init(named: "KokoWalk")!
-				])
-		)
-	}
 	
 	func addCharacter(name: String) {
 		let characterNode = self.characterNode?.copy() as! SKSpriteNode
+		characterNode.name = name
+		let stateMachine = GKStateMachine(states: [
+			JoiningState(characterNode: characterNode),
+			WalkingState(characterNode: characterNode),
+			StoppingState(characterNode: characterNode),
+			]
+		)
+		stateMachine.enter(JoiningState.self)
+		self.stateMachines.append(stateMachine)
 
-		characterNode.run(
-			SKAction.repeatForever(SKAction.sequence([
-				SKAction.wait(forDuration: 1.6),
-				SKAction.run({
-					self.actions(characterNode: characterNode)
-				}),
-				SKAction.wait(forDuration: 1.6)
-				])
-		))
 
 		self.addChild(characterNode)
 	}
@@ -158,14 +152,7 @@ class GameScene: SKScene {
 			self.lastUpdateTime = currentTime
 		}
 		
-		// Calculate time since last update
-		let dt = currentTime - self.lastUpdateTime
-		
-		// Update entities
-		for entity in self.entities {
-			entity.update(deltaTime: dt)
-		}
-		
 		self.lastUpdateTime = currentTime
+		
 	}
 }

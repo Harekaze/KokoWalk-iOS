@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E20EB181D83BAB1003A67A2 /* CharacterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E20EB171D83BAB1003A67A2 /* CharacterState.swift */; };
 		9E9179381D7B288000D572EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9179371D7B288000D572EA /* AppDelegate.swift */; };
 		9E91793A1D7B288000D572EA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9E9179391D7B288000D572EA /* GameScene.sks */; };
 		9E91793C1D7B288000D572EA /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9E91793B1D7B288000D572EA /* Actions.sks */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E20EB171D83BAB1003A67A2 /* CharacterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterState.swift; sourceTree = "<group>"; };
 		9E9179341D7B288000D572EA /* KokoWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KokoWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9179371D7B288000D572EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E9179391D7B288000D572EA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				9E91793D1D7B288000D572EA /* GameScene.swift */,
 				9E91796B1D7B33D200D572EA /* KokoMainViewController.swift */,
 				9E91796D1D7B34DD00D572EA /* CharacterCell.swift */,
+				9E20EB171D83BAB1003A67A2 /* CharacterState.swift */,
 				9E9179411D7B288000D572EA /* Main.storyboard */,
 				9E9179441D7B288000D572EA /* Assets.xcassets */,
 				9E9179461D7B288000D572EA /* LaunchScreen.storyboard */,
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E20EB181D83BAB1003A67A2 /* CharacterState.swift in Sources */,
 				9E91796E1D7B34DD00D572EA /* CharacterCell.swift in Sources */,
 				9E91796C1D7B33D200D572EA /* KokoMainViewController.swift in Sources */,
 				9E91793E1D7B288000D572EA /* GameScene.swift in Sources */,

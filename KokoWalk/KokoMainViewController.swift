@@ -83,7 +83,6 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 				self.gameScene = sceneNode
 				
 				// Copy gameplay related content over to the scene
-				sceneNode.entities = scene.entities
 				sceneNode.graphs = scene.graphs
 				
 				// Set the scale mode to scale to fit the window
