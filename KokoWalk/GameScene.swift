@@ -64,6 +64,7 @@ class GameScene: SKScene {
 			characterNode.position = CGPoint(x: -215, y: 315)
 			characterNode.name = "Charater"
 			characterNode.scale(to: CGSize(width: 268, height: 508))
+			characterNode.zPosition = 4
 			characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
 		}
 		
