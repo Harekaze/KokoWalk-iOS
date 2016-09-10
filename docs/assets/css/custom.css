@@ -1,12 +1,12 @@
 /* Font Settings */
 @font-face {
     font-family: "Kazesawa-Regular";
-    src: url("assets/fonts/Kazesawa-Regular.woff"), url("/assets/fonts/Kazesawa-Regular.ttf");
+    src: url("../fonts/Kazesawa-Regular.woff"), url("../fonts/Kazesawa-Regular.ttf");
 }
 
 @font-face {
     font-family: "Kazesawa-Light";
-    src: url("assets/fonts/Kazesawa-Light.woff"), url("/assets/fonts/Kazesawa-Light.ttf");
+    src: url("../fonts/Kazesawa-Light.woff"), url("../fonts/Kazesawa-Light.ttf");
 }
 
 /* Global Settings */
