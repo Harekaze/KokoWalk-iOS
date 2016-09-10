@@ -37,8 +37,8 @@
 import UIKit
 import GameplayKit
 
-let randomX = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -250, highestValue: 250)
-let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -350, highestValue: -100)
+let randomX = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -270, highestValue: 270)
+let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -400, highestValue: -50)
 
 let actionImages: [String: [String]] = [
 	"menu_item_koko": ["asisu", "hai", "koko_def", "koko_meshi", "koko_sensei", "koko_uta", "koko_zinb", "koko_zinbabue2", "kokomi_4", "kokotto", "naki_B1", "naki_B2", "orya", "ra_men", "sengen", "tettere_", "zinbabues"],
