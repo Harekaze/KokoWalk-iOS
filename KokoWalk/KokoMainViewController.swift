@@ -110,6 +110,18 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		}
 
 	}
+	
+	// View appearing/disappearing
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		sceneView.isPaused = false
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		sceneView.isPaused = true
+	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
