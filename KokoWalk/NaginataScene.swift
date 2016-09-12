@@ -39,7 +39,10 @@ import GameplayKit
 
 class NaginataScene: SKScene {
 
+	private var characterNode: SKSpriteNode!
+
 	override func sceneDidLoad() {
+		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
 	}
 
 	// MARK: - Frame update
@@ -47,4 +50,26 @@ class NaginataScene: SKScene {
 	override func update(_ currentTime: TimeInterval) {
 	}
 
+	// MARK: - Action
+	
+	func attack(flip: Bool) {
+		if flip {
+			characterNode.run(SKAction.scaleX(by: -1, y: 1, duration: 0))
+		}
+		characterNode.run(SKAction.sequence([
+			SKAction.setTexture(SKTexture(imageNamed: "ojisan_middle")),
+			SKAction.wait(forDuration: 0.3),
+			SKAction.setTexture(SKTexture(imageNamed: "ojisan_def"))
+			]))
+	}
+	
+	// MARK: - Touch events
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		if let touch = touches.first {
+			let flip = touch.location(in: self).x * characterNode.xScale > 0
+			self.attack(flip: flip)
+		}
+	}
+	
 }
