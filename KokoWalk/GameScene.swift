@@ -74,7 +74,7 @@ class GameScene: SKScene {
 	// MARK: - Character addition
 	
 	func addCharacter(name: String) {
-		if characterNodes.count > 15 {
+		if characterNodes.count > 20 {
 			var minZPosition:CGFloat = 10
 			var index: Int = 0
 			for (i, characterNode) in characterNodes.enumerated() {
