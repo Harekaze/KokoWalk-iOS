@@ -77,6 +77,7 @@ class NaginataDojoViewController: UIViewController {
 		if let view = self.view as? SKView {
 			if let scene = view.scene as? NaginataScene {
 				scene.gameLoop.invalidate()
+				scene.countdownLoop.invalidate()
 			}
 			view.removeFromSuperview()
 		}

@@ -40,29 +40,41 @@ import GameplayKit
 class NaginataScene: SKScene {
 	
 	var gameLoop: Timer!
+	var countdownLoop: Timer!
 	var totalPoint: Int = 0
 
 	private var characterNode: SKSpriteNode!
-	private var suica: SKSpriteNode!
+	private var suicaNode: SKSpriteNode!
+	private var countdownLabel: SKLabelNode!
+	private var pointLabel: SKLabelNode!
+	private var startDate: Date!
 	
 	let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -270, highestValue: 170)
 
 	
 	override func sceneDidLoad() {
-		if characterNode != nil { return }
 		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
-		self.suica = self.childNode(withName: "//suica") as? SKSpriteNode
-		
-		self.gameLoop = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: {
+		self.suicaNode = self.childNode(withName: "//suica") as? SKSpriteNode
+		self.countdownLabel = self.childNode(withName: "//countdown") as? SKLabelNode
+		self.pointLabel = self.childNode(withName: "//point") as? SKLabelNode
+		self.startDate = Date()
+	}
+	
+	override func didMove(to view: SKView) {
+		self.gameLoop = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: {
 			timer in
 			self.addSuica()
 		})
-		Timer.scheduledTimer(withTimeInterval: 125, repeats: false, block: {
+		self.countdownLoop = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {
 			timer in
-			self.gameLoop.invalidate()
+			let time = Int(120 - round(DateInterval(start: self.startDate, end: timer.fireDate).duration))
+			if time < 0 {
+				self.gameLoop.invalidate()
+				timer.invalidate()
+			}
+			self.countdownLabel.text = String(format: "%02d:%02d", arguments: [time / 60, time % 60])
 		})
 	}
-	
 
 	// MARK: - Frame update
 	
@@ -99,17 +111,20 @@ class NaginataScene: SKScene {
 			guard let created = suica.userData?["created"] as? Date else { continue }
 			suica.userData?.removeObject(forKey: "created")
 			suica.removeAction(forKey: "SuicaJoin")
+			let direction: String
 			if suica.position.x < 0 {
-				suica.run(SKAction.sequence([
-					SKAction.init(named: "SuicaLeftOut")!,
-					SKAction.removeFromParent()
-					]))
+				direction = "Left"
 			} else {
-				suica.run(SKAction.sequence([
-					SKAction.init(named: "SuicaRightOut")!,
-					SKAction.removeFromParent()
-					]))
+				direction = "Right"
 			}
+			suica.run(SKAction.sequence([
+				SKAction.init(named: "Suica\(direction)Out")!,
+				SKAction.removeFromParent(),
+				SKAction.run {
+					self.pointLabel.text = String(format: "%dpt (ver 1.0)", arguments: [self.totalPoint])
+				}
+				])
+			)
 			
 			// Add first attack point
 			let point = (2 - DateInterval(start: created, end: Date()).duration) * 1000
@@ -120,27 +135,28 @@ class NaginataScene: SKScene {
 	}
 	
 	func addSuica() {
-		if let suica = self.suica.copy() as? SKSpriteNode {
+		if let suica = self.suicaNode.copy() as? SKSpriteNode {
 			suica.userData = ["created": Date()]
 			suica.name = "activeSuica"
 			
+			let direction: String
+			let xSide: CGFloat
 			if randomY.nextBool() {
-				suica.position = CGPoint(x: -770, y: CGFloat(randomY.nextInt()))
-				suica.run(SKAction.sequence([
-					SKAction.init(named: "SuicaLeftIn")!,
-					SKAction.init(named: "SuicaLeftOut")!,
-					SKAction.removeFromParent()
-					])
-					, withKey: "SuicaJoin")
+				direction = "Left"
+				xSide = -1
 			} else {
-				suica.position = CGPoint(x: 770, y: CGFloat(randomY.nextInt()))
-				suica.run(SKAction.sequence([
-					SKAction.init(named: "SuicaRightIn")!,
-					SKAction.init(named: "SuicaRightOut")!,
-					SKAction.removeFromParent()
-					])
-					, withKey: "SuicaJoin")
+				direction = "Right"
+				xSide = 1
 			}
+
+			suica.position = CGPoint(x: xSide * 770, y: CGFloat(randomY.nextInt()))
+			suica.run(SKAction.sequence([
+				SKAction.init(named: "Suica\(direction)In")!,
+				SKAction.init(named: "Suica\(direction)Out")!,
+				SKAction.removeFromParent()
+				])
+				, withKey: "SuicaJoin")
+			
 			self.addChild(suica)
 		}
 	}
