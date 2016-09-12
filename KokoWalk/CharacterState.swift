@@ -74,7 +74,7 @@ class JoiningState: CharacterState {
 	override func update(deltaTime seconds: TimeInterval) {
 		self.stateMachine?.enter(WalkingState.self)
 		characterNode.run(SKAction.sequence([
-			SKAction.wait(forDuration: 1.6),
+			SKAction.wait(forDuration: 2),
 			SKAction.run {
 				self.stateMachine?.update(deltaTime: 1.6)
 			},
