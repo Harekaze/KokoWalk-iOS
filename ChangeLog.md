@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.0.0 build-4
+- Improve Naginata Dojo countdown timer
+- Add ojisan 2nd attack action
+
 ## 1.0.0 build-3
 - Add Washimoiruzo! action
 - Create Naginata Dojo game
