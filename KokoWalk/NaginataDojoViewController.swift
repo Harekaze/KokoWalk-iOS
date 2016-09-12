@@ -75,9 +75,6 @@ class NaginataDojoViewController: UIViewController {
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		if let view = self.view as? SKView {
-			if let scene = view.scene as? NaginataScene {
-				scene.countdownLoop.invalidate()
-			}
 			view.removeFromSuperview()
 		}
 	}

@@ -39,7 +39,6 @@ import GameplayKit
 
 class NaginataScene: SKScene {
 	
-	var countdownLoop: Timer!
 	var totalPoint: Int = 0
 
 	private var characterNode: SKSpriteNode!
@@ -62,31 +61,24 @@ class NaginataScene: SKScene {
 		self.pointLabel = self.childNode(withName: "//point") as? SKLabelNode
 		self.startDate = Date()
 	}
-	
-	override func didMove(to view: SKView) {
-		self.countdownLoop = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {
-			timer in
-			let time = Int(120 - round(DateInterval(start: self.startDate, end: timer.fireDate).duration))
-			if time < 0 {
-				timer.invalidate()
-				Timer.scheduledTimer(withTimeInterval: self.suicaInterval, repeats: false, block: {
-					_ in
-					self.isPaused = true
-				})
-				self.suicaInterval = TimeInterval(Int.min)
-			} else {
-				self.countdownLabel.text = String(format: "%02d:%02d", arguments: [time / 60, time % 60])
-			}
-		})
-	}
 
 	// MARK: - Frame update
 	
 	override func update(_ currentTime: TimeInterval) {
-		if (self.lastUpdateTime == 0) {
+		if self.lastUpdateTime == 0 {
 			self.lastUpdateTime = currentTime
 		}
 		
+		let time = Int(120 - round(DateInterval(start: self.startDate, end: Date()).duration))
+		if time < 0 {
+			if self.children.filter({$0.name == "activeSuica"}).count == 0 {
+				characterNode.texture = SKTexture(imageNamed: "ojisan_def")
+				self.isPaused = true
+			}
+			return
+		}
+		self.countdownLabel.text = String(format: "%02d:%02d", arguments: [time / 60, time % 60])
+
 		let dt = currentTime - self.lastUpdateTime
 		self.waitingTime += dt
 		
