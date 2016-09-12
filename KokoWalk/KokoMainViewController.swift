@@ -51,11 +51,11 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		"menu_item_mike",
 		"menu_item_siro",
 		"menu_item_zona",
-//		"menu_item_mariko_doujou",
-//		"menu_item_mei_doujou",
-//		"menu_item_koko_doujou",
-//		"menu_item_koko_doujou_hard",
-//		"menu_item_oyabun_doujou",
+		"menu_item_mariko_doujou",
+		"menu_item_mei_doujou",
+		"menu_item_koko_doujou",
+		"menu_item_koko_doujou_hard",
+		"menu_item_oyabun_doujou",
 		"menu_item_nop",
 		"menu_item_nop",
 		"menu_item_nop",
@@ -181,7 +181,12 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		if name == "menu_item_koko" {
 			washimoiruzoButton.isHidden = false
 		}
-		gameScene.addCharacter(name: name)
+		
+		if name.hasSuffix("doujou") {
+			performSegue(withIdentifier: "NaginataSegue", sender: self)
+		} else {
+			gameScene.addCharacter(name: name)
+		}
 	}
 
 }

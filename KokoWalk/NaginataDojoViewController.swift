@@ -40,6 +40,14 @@ import GameplayKit
 
 class NaginataDojoViewController: UIViewController {
 
+	// MARK: - Interface Builder actions
+
+	@IBAction func handleExitButton(_ sender: UIButton) {
+		dismiss(animated: false)
+	}
+	
+	// MARK: - View initialization
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,6 +77,8 @@ class NaginataDojoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 	
+	// MARK: - Device rotation
+
 	override var shouldAutorotate: Bool {
 		return true
 	}
@@ -77,6 +87,8 @@ class NaginataDojoViewController: UIViewController {
 		return .landscape
 	}
 	
+	// MARK: - Status bar
+
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -113,6 +114,7 @@
                         <outlet property="characterModeCollectionView" destination="dxl-Ds-5fw" id="zgP-09-DRt"/>
                         <outlet property="sceneView" destination="Y60-gY-3sg" id="7aR-cw-cf3"/>
                         <outlet property="washimoiruzoButton" destination="UcW-5e-YdA" id="pKp-az-OOc"/>
+                        <segue destination="xsc-O6-tEc" kind="presentation" identifier="NaginataSegue" animates="NO" id="frX-Op-ZRs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tnZ-8l-WgV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,14 +132,35 @@
                     <view key="view" contentMode="scaleToFill" id="Sa1-t6-pcW" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1r-bD-3GV">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="d7i-Fx-MfE"/>
+                                    <constraint firstAttribute="height" constant="22" id="hOG-0j-wqM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="EXIT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleExitButton:" destination="xsc-O6-tEc" eventType="touchUpInside" id="INA-uP-4Fn"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y1r-bD-3GV" firstAttribute="leading" secondItem="Sa1-t6-pcW" secondAttribute="leadingMargin" id="DlK-Ob-e6O"/>
+                            <constraint firstItem="y1r-bD-3GV" firstAttribute="top" secondItem="Sa1-t6-pcW" secondAttribute="topMargin" constant="20" id="wA7-Cr-owe"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="667" height="375"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEI-7b-RAt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="343"/>
+            <point key="canvasLocation" x="756" y="260"/>
         </scene>
     </scenes>
     <resources>
