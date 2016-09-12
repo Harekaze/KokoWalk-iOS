@@ -38,12 +38,31 @@ import SpriteKit
 import GameplayKit
 
 class NaginataScene: SKScene {
+	
+	var gameLoop: Timer!
+	var totalPoint: Int = 0
 
 	private var characterNode: SKSpriteNode!
+	private var suica: SKSpriteNode!
+	
+	let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -270, highestValue: 170)
 
+	
 	override func sceneDidLoad() {
+		if characterNode != nil { return }
 		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
+		self.suica = self.childNode(withName: "//suica") as? SKSpriteNode
+		
+		self.gameLoop = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: {
+			timer in
+			self.addSuica()
+		})
+		Timer.scheduledTimer(withTimeInterval: 125, repeats: false, block: {
+			timer in
+			self.gameLoop.invalidate()
+		})
 	}
+	
 
 	// MARK: - Frame update
 	
@@ -52,23 +71,85 @@ class NaginataScene: SKScene {
 
 	// MARK: - Action
 	
-	func attack(flip: Bool) {
-		if flip {
-			characterNode.run(SKAction.scaleX(by: -1, y: 1, duration: 0))
+	func attack(position: CGPoint) {
+		for child in self.children {
+			// Check node whether suica
+			guard let suica = child as? SKSpriteNode else { continue }
+			guard let name = suica.name else { continue }
+			if name != "activeSuica" { continue }
+		
+			// Check attack direction
+			if position.x * suica.position.x < 0 { continue }
+			
+			// Attack action
+			let flip = position.x * characterNode.xScale > 0
+			if flip {
+				characterNode.run(SKAction.scaleX(by: -1, y: 1, duration: 0))
+			}
+			characterNode.run(SKAction.sequence([
+				SKAction.setTexture(SKTexture(imageNamed: "ojisan_middle")),
+				SKAction.wait(forDuration: 0.3),
+				SKAction.setTexture(SKTexture(imageNamed: "ojisan_def"))
+				]))
+			
+			// Add attack point
+			totalPoint += 5
+			
+			// Check first attack
+			guard let created = suica.userData?["created"] as? Date else { continue }
+			suica.userData?.removeObject(forKey: "created")
+			suica.removeAction(forKey: "SuicaJoin")
+			if suica.position.x < 0 {
+				suica.run(SKAction.sequence([
+					SKAction.init(named: "SuicaLeftOut")!,
+					SKAction.removeFromParent()
+					]))
+			} else {
+				suica.run(SKAction.sequence([
+					SKAction.init(named: "SuicaRightOut")!,
+					SKAction.removeFromParent()
+					]))
+			}
+			
+			// Add first attack point
+			let point = (2 - DateInterval(start: created, end: Date()).duration) * 1000
+			totalPoint += Int(point)
+			
+			return
 		}
-		characterNode.run(SKAction.sequence([
-			SKAction.setTexture(SKTexture(imageNamed: "ojisan_middle")),
-			SKAction.wait(forDuration: 0.3),
-			SKAction.setTexture(SKTexture(imageNamed: "ojisan_def"))
-			]))
+	}
+	
+	func addSuica() {
+		if let suica = self.suica.copy() as? SKSpriteNode {
+			suica.userData = ["created": Date()]
+			suica.name = "activeSuica"
+			
+			if randomY.nextBool() {
+				suica.position = CGPoint(x: -770, y: CGFloat(randomY.nextInt()))
+				suica.run(SKAction.sequence([
+					SKAction.init(named: "SuicaLeftIn")!,
+					SKAction.init(named: "SuicaLeftOut")!,
+					SKAction.removeFromParent()
+					])
+					, withKey: "SuicaJoin")
+			} else {
+				suica.position = CGPoint(x: 770, y: CGFloat(randomY.nextInt()))
+				suica.run(SKAction.sequence([
+					SKAction.init(named: "SuicaRightIn")!,
+					SKAction.init(named: "SuicaRightOut")!,
+					SKAction.removeFromParent()
+					])
+					, withKey: "SuicaJoin")
+			}
+			self.addChild(suica)
+		}
 	}
 	
 	// MARK: - Touch events
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if let touch = touches.first {
-			let flip = touch.location(in: self).x * characterNode.xScale > 0
-			self.attack(flip: flip)
+			self.attack(position: touch.location(in: self))
 		}
 	}
 	

@@ -114,7 +114,7 @@
                         <outlet property="characterModeCollectionView" destination="dxl-Ds-5fw" id="zgP-09-DRt"/>
                         <outlet property="sceneView" destination="Y60-gY-3sg" id="7aR-cw-cf3"/>
                         <outlet property="washimoiruzoButton" destination="UcW-5e-YdA" id="pKp-az-OOc"/>
-                        <segue destination="xsc-O6-tEc" kind="presentation" identifier="NaginataSegue" animates="NO" id="frX-Op-ZRs"/>
+                        <segue destination="xsc-O6-tEc" kind="show" identifier="NaginataSegue" animates="NO" id="frX-Op-ZRs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tnZ-8l-WgV" userLabel="First Responder" sceneMemberID="firstResponder"/>
