@@ -116,7 +116,9 @@ class WalkingState: CharacterState {
 				])
 		)
 		characterNode.run(walkAction)
-		characterNode.run(SKAction.scaleX(by: flip ? -1 : 1, y: 1, duration: 0))
+		if flip {
+			characterNode.run(SKAction.scaleX(by: -1, y: 1, duration: 0))
+		}
 		characterNode.zPosition = point.y / -100
 
 	}
