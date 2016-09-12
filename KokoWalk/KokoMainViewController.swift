@@ -69,6 +69,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	@IBOutlet weak var sceneView: SKView!
 	@IBOutlet weak var characterModeCollectionView: UICollectionView!
 	@IBOutlet weak var washimoiruzoButton: UIButton!
+	@IBOutlet weak var clearButton: UIButton!
 	
 	// MARK: - Interface Builder actions
 	
@@ -106,6 +107,8 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 				
 //				sceneView.showsFPS = true
 //				sceneView.showsNodeCount = true
+				
+				gameScene.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 			}
 		}
 
@@ -126,6 +129,14 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	// MARK: - Observer
+	
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if keyPath == "clockMode" {
+			clearButton.isHidden = gameScene.clockMode
+		}
 	}
 
 	/*

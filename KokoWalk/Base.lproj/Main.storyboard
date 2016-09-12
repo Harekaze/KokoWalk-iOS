@@ -72,7 +72,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CharacterCell" id="WR2-pN-lM0" customClass="CharacterCell" customModule="KokoWalk" customModuleProvider="target">
-                                        <rect key="frame" x="3" y="5" width="78" height="78"/>
+                                        <rect key="frame" x="3" y="4.5" width="78" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
@@ -112,6 +112,7 @@
                     </view>
                     <connections>
                         <outlet property="characterModeCollectionView" destination="dxl-Ds-5fw" id="zgP-09-DRt"/>
+                        <outlet property="clearButton" destination="yY7-3X-jmV" id="uis-oz-fJo"/>
                         <outlet property="sceneView" destination="Y60-gY-3sg" id="7aR-cw-cf3"/>
                         <outlet property="washimoiruzoButton" destination="UcW-5e-YdA" id="pKp-az-OOc"/>
                         <segue destination="xsc-O6-tEc" kind="show" identifier="NaginataSegue" animates="NO" id="frX-Op-ZRs"/>

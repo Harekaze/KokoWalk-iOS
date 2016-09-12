@@ -42,14 +42,15 @@ class GameScene: SKScene {
 	var stateMachines = [GKStateMachine]()
 	var characterNodes = [SKSpriteNode]()
 	var graphs = [String : GKGraph]()
+	dynamic var clockMode = false
 	
-	private var lastUpdateTime : TimeInterval = 0
 	private var characterNode: SKSpriteNode?
+	private var dateLabel: SKLabelNode!
+	private var timeLabel: SKLabelNode!
+	private var secondsLabel: SKLabelNode!
+	private var secondsDateFormatter: DateFormatter!
 	
-	override func sceneDidLoad() {
-
-		self.lastUpdateTime = 0
-		
+	override func sceneDidLoad() {		
 		self.characterNode = SKSpriteNode(imageNamed: "asisu")
 
 		if let characterNode = self.characterNode {
@@ -69,6 +70,11 @@ class GameScene: SKScene {
 			}
 		})
 
+		self.dateLabel = self.childNode(withName: "//date") as? SKLabelNode
+		self.timeLabel = self.childNode(withName: "//time") as? SKLabelNode
+		self.secondsLabel = self.childNode(withName: "//seconds") as? SKLabelNode
+		self.secondsDateFormatter = DateFormatter()
+		self.secondsDateFormatter.dateFormat = "ss"
 	}
 	
 	// MARK: - Character addition
@@ -130,14 +136,18 @@ class GameScene: SKScene {
 	// MARK: - Frame update
 	
 	override func update(_ currentTime: TimeInterval) {
-		// Called before each frame is rendered
-		
-		// Initialize _lastUpdateTime if it has not already been
-		if (self.lastUpdateTime == 0) {
-			self.lastUpdateTime = currentTime
-		}
-		
-		self.lastUpdateTime = currentTime
-		
+		let now = Date()
+		self.dateLabel.text = DateFormatter.localizedString(from: now, dateStyle: .medium, timeStyle: .none)
+		self.timeLabel.text = DateFormatter.localizedString(from: now, dateStyle: .none, timeStyle: .short)
+		self.secondsLabel.text = self.secondsDateFormatter.string(from: now)
+	}
+	
+	// MARK: - Touch events
+	
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.dateLabel.isHidden = self.clockMode
+		self.timeLabel.isHidden = self.clockMode
+		self.secondsLabel.isHidden = self.clockMode
+		self.clockMode = !self.clockMode
 	}
 }
