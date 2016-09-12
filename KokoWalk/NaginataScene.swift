@@ -109,7 +109,7 @@ class NaginataScene: SKScene {
 				characterNode.run(SKAction.scaleX(by: -1, y: 1, duration: 0))
 			}
 			characterNode.run(SKAction.sequence([
-				SKAction.setTexture(SKTexture(imageNamed: "ojisan_middle")),
+				randomY.nextBool() ? SKAction.setTexture(SKTexture(imageNamed: "ojisan_middle")) : SKAction.setTexture(SKTexture(imageNamed: "ojisan_up")),
 				SKAction.wait(forDuration: 0.3),
 				SKAction.setTexture(SKTexture(imageNamed: "ojisan_def"))
 				]))
