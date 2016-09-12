@@ -30,11 +30,32 @@
                                             <action selector="handleClearButton:" destination="wCh-1G-hHx" eventType="touchUpInside" id="ecH-bo-Teg"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UcW-5e-YdA">
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="DpT-yN-Gpn"/>
+                                            <constraint firstAttribute="width" constant="111" id="vHo-Yf-Ucf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="ワシもいるぞ！">
+                                            <color key="titleColor" red="0.1647058824" green="0.050980392159999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleWashimoiruzo:" destination="wCh-1G-hHx" eventType="touchUpInside" id="lZT-Wc-2zZ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="yY7-3X-jmV" firstAttribute="leading" secondItem="Y60-gY-3sg" secondAttribute="leading" id="Ats-Nd-DmY"/>
                                     <constraint firstItem="yY7-3X-jmV" firstAttribute="top" secondItem="Y60-gY-3sg" secondAttribute="top" id="b8I-4C-He2"/>
+                                    <constraint firstAttribute="bottom" secondItem="UcW-5e-YdA" secondAttribute="bottom" constant="8" id="nkA-YH-KNn"/>
+                                    <constraint firstAttribute="trailing" secondItem="UcW-5e-YdA" secondAttribute="trailing" constant="8" id="zaZ-m8-RZC"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dxl-Ds-5fw">
@@ -91,11 +112,12 @@
                     <connections>
                         <outlet property="characterModeCollectionView" destination="dxl-Ds-5fw" id="zgP-09-DRt"/>
                         <outlet property="sceneView" destination="Y60-gY-3sg" id="7aR-cw-cf3"/>
+                        <outlet property="washimoiruzoButton" destination="UcW-5e-YdA" id="pKp-az-OOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tnZ-8l-WgV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-338" y="260"/>
+            <point key="canvasLocation" x="-338.39999999999998" y="259.52023988005999"/>
         </scene>
     </scenes>
     <resources>

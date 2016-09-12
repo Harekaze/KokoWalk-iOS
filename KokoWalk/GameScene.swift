@@ -103,6 +103,20 @@ class GameScene: SKScene {
 		self.addChild(characterNode)
 	}
 	
+	func washimoiruzo(afterBlock: @escaping () -> Void) {
+		let characterNode = SKSpriteNode(imageNamed: "washimoikou2")
+		characterNode.position = CGPoint(x: 550, y: -350)
+		characterNode.name = "Washimoiruzo"
+		characterNode.scale(to: CGSize(width: 268, height: 508))
+		characterNode.zPosition = 4
+		characterNode.run(SKAction.sequence([
+			SKAction.init(named: "Washimoiruzo")!,
+			SKAction.removeFromParent(),
+			SKAction.run(afterBlock)
+			]), withKey: "Washimoiruzo")
+		self.addChild(characterNode)
+	}
+	
 	// MARK: - Character deletion
 	
 	func clearAll() {

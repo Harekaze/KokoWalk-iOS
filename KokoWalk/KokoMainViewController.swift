@@ -68,11 +68,19 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	
 	@IBOutlet weak var sceneView: SKView!
 	@IBOutlet weak var characterModeCollectionView: UICollectionView!
+	@IBOutlet weak var washimoiruzoButton: UIButton!
 	
 	// MARK: - Interface Builder actions
 	
 	@IBAction func handleClearButton(_ sender: UIButton) {
 		self.gameScene.clearAll()
+	}
+	
+	@IBAction func handleWashimoiruzo(_ sender: UIButton) {
+		sender.isEnabled = false
+		self.gameScene.washimoiruzo(afterBlock: {
+			sender.isEnabled = true
+		})
 	}
 	
 	// MARK: - View initialization
@@ -169,6 +177,9 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		let name = dataSource[indexPath.row]
 		if name == "menu_item_nop" {
 			return
+		}
+		if name == "menu_item_koko" {
+			washimoiruzoButton.isHidden = false
 		}
 		gameScene.addCharacter(name: name)
 	}
