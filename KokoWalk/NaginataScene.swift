@@ -137,7 +137,7 @@ class NaginataScene: SKScene {
 			)
 			
 			// Add first attack point
-			let point = (2 - DateInterval(start: created, end: Date()).duration) * 1000
+			let point = (1.6 - DateInterval(start: created, end: Date()).duration) * 1000
 			totalPoint += Int(point)
 			
 			return
