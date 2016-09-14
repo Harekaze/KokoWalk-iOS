@@ -100,8 +100,10 @@ class NaginataScene: SKScene {
 			guard let name = suica.name else { continue }
 			if name != "activeSuica" { continue }
 		
-			// Check attack direction
-			if position.x * suica.position.x < 0 { continue }
+			// Check attack position
+			if hypot(position.x - suica.position.x, position.y - suica.position.y) > suica.size.width / 2 {
+				continue
+			}
 			
 			// Attack action
 			let flip = position.x * characterNode.xScale > 0
@@ -115,11 +117,12 @@ class NaginataScene: SKScene {
 				]))
 			
 			// Add attack point
-			totalPoint += 5
+			guard let created = suica.userData?["created"] as? Date else { continue }
+			let point = (1.6 - DateInterval(start: created, end: Date()).duration) * 1000
+			totalPoint += Int(point)
 			
 			// Check first attack
-			guard let created = suica.userData?["created"] as? Date else { continue }
-			suica.userData?.removeObject(forKey: "created")
+			if suica.action(forKey: "SuicaJoin") == nil { continue }
 			suica.removeAction(forKey: "SuicaJoin")
 			let direction: String
 			if suica.position.x < 0 {
@@ -135,12 +138,6 @@ class NaginataScene: SKScene {
 				}
 				])
 			)
-			
-			// Add first attack point
-			let point = (1.6 - DateInterval(start: created, end: Date()).duration) * 1000
-			totalPoint += Int(point)
-			
-			return
 		}
 	}
 	
@@ -173,16 +170,20 @@ class NaginataScene: SKScene {
 	
 	func updateInterval() {
 		switch totalPoint {
-		case 0..<40000:
-			suicaInterval = 2.0
-		case 40000..<60000:
+		case 0..<20000:
 			suicaInterval = 1.8
-		case 60000..<80000:
+		case 20000..<40000:
 			suicaInterval = 1.6
-		case 80000..<100000:
+		case 40000..<60000:
 			suicaInterval = 1.4
-		default:
+		case 60000..<80000:
 			suicaInterval = 1.2
+		case 80000..<100000:
+			suicaInterval = 1.1
+		case 10000..<400000:
+			suicaInterval = 1.0
+		default:
+			suicaInterval = 0.8
 		}
 	}
 	
