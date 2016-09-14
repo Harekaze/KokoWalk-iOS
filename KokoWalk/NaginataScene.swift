@@ -174,16 +174,18 @@ class NaginataScene: SKScene {
 			suicaInterval = 1.8
 		case 20000..<40000:
 			suicaInterval = 1.6
-		case 40000..<60000:
+		case 40000..<80000:
 			suicaInterval = 1.4
-		case 60000..<80000:
-			suicaInterval = 1.2
 		case 80000..<100000:
-			suicaInterval = 1.1
-		case 10000..<400000:
 			suicaInterval = 1.0
-		default:
+		case 100000..<200000:
+			suicaInterval = 0.9
+		case 200000..<400000:
 			suicaInterval = 0.8
+		case 400000..<1000000:
+			suicaInterval = 1.0 - TimeInterval(totalPoint / 2000000)
+		default:
+			suicaInterval = 0.3
 		}
 	}
 	
