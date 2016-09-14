@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.0.0 build-5
+- Change Ojisan's suica hit point
+- Change Ojisan's suica interval
+
 ## 1.0.0 build-4
 - Improve Naginata Dojo countdown timer
 - Add ojisan 2nd attack action
