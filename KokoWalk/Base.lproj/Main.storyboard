@@ -142,7 +142,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="EXIT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -152,7 +152,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="y1r-bD-3GV" firstAttribute="leading" secondItem="Sa1-t6-pcW" secondAttribute="leadingMargin" id="DlK-Ob-e6O"/>
+                            <constraint firstItem="y1r-bD-3GV" firstAttribute="centerX" secondItem="Sa1-t6-pcW" secondAttribute="centerX" constant="-100" id="WHA-wT-Uq8"/>
                             <constraint firstItem="y1r-bD-3GV" firstAttribute="top" secondItem="Sa1-t6-pcW" secondAttribute="topMargin" constant="20" id="wA7-Cr-owe"/>
                         </constraints>
                     </view>
