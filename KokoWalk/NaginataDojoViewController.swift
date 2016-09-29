@@ -38,8 +38,9 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import Social
+import GameKit
 
-class NaginataDojoViewController: UIViewController {
+class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelegate {
 
 	// MARK: Interface Builder actions
 
@@ -62,12 +63,60 @@ class NaginataDojoViewController: UIViewController {
 				shareCompose.add(URL(string: "https://harekaze.org/KokoWalk-iOS/")!)
 				shareCompose.setInitialText("KokoWalk for iOSの薙刀道場で\(naginataScene.totalPoint)pt獲得しました！ #KokoWalk #NaginataScore")
 				self.present(shareCompose, animated: true)
+			} else {
+				self.present(UIAlertController(title: "エラー", message: "Twitter共有がサポートされていません。", preferredStyle: .alert), animated: true)
 			}
 		})
+		let gameCenter = UIAlertAction(title: "GameCenterで共有", style: .default, handler: {
+			_ in
+			guard let view = self.view as! SKView? else { return }
+			guard let naginataScene = view.scene as! NaginataScene? else { return }
+
+			let localPlayer = GKLocalPlayer.localPlayer()
+			localPlayer.authenticateHandler = {(viewController, error) in
+				if let error = error {
+					self.present(UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .alert), animated: true)
+					return
+				}
+
+				if let viewController = viewController {
+					self.present(viewController, animated: true, completion: nil)
+				}
+
+				if !localPlayer.isAuthenticated {
+					self.present(UIAlertController(title: "エラー", message: "ログインに失敗しました。", preferredStyle: .alert), animated: true)
+					return
+				}
+
+				localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifier, error) in
+					if let error = error {
+						self.present(UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .alert), animated: true)
+					} else {
+						let score = GKScore(leaderboardIdentifier: leaderboardIdentifier!, player: localPlayer)
+						score.value = Int64(naginataScene.totalPoint)
+						GKScore.report([score])
+
+						let gameCenterController = GKGameCenterViewController()
+						gameCenterController.gameCenterDelegate = self
+						gameCenterController.viewState = .leaderboards
+						gameCenterController.leaderboardIdentifier = leaderboardIdentifier
+						self.present(gameCenterController, animated: true, completion: nil)
+					}
+				})
+			}
+		})
+
 		let cancel = UIAlertAction(title: "cancel", style: .cancel)
 		alertController.addAction(shareTwitter)
+		alertController.addAction(gameCenter)
 		alertController.addAction(cancel)
 		present(alertController, animated: true)
+	}
+
+	// MARK: GameCenter
+
+	func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+		gameCenterViewController.dismiss(animated: true)
 	}
 
 	// MARK: View initialization
