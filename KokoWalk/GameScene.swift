@@ -38,22 +38,22 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-	
+
 	var stateMachines = [GKStateMachine]()
 	var characterNodes = [SKSpriteNode]()
 	var graphs = [String : GKGraph]()
 	dynamic var clockMode = false
-	
+
 	private var characterNode: SKSpriteNode?
 	private var dateLabel: SKLabelNode!
 	private var timeLabel: SKLabelNode!
 	private var secondsLabel: SKLabelNode!
 	private var secondsDateFormatter: DateFormatter!
-	
+
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
 			self.characterNode = SKSpriteNode(imageNamed: "asisu")
-			
+
 			if let characterNode = self.characterNode {
 				characterNode.position = CGPoint(x: -215, y: 315)
 				characterNode.name = "Charater"
@@ -113,7 +113,7 @@ class GameScene: SKScene {
 
 
 	// MARK: - Character addition
-	
+
 	func addCharacter(name: String) {
 		if characterNodes.count > 20 {
 			var minZPosition:CGFloat = 10
@@ -143,7 +143,7 @@ class GameScene: SKScene {
 
 		self.addChild(characterNode)
 	}
-	
+
 	func washimoiruzo(afterBlock: @escaping () -> Void) {
 		let characterNode = SKSpriteNode(imageNamed: "washimoikou2")
 		characterNode.position = CGPoint(x: 550, y: -350)
@@ -161,9 +161,9 @@ class GameScene: SKScene {
 			]), withKey: "Washimoiruzo")
 		self.addChild(characterNode)
 	}
-	
+
 	// MARK: - Character deletion
-	
+
 	func clearAll() {
 		for characterNode in self.characterNodes {
 			characterNode.removeFromParent()
@@ -171,18 +171,18 @@ class GameScene: SKScene {
 		characterNodes.removeAll()
 		stateMachines.removeAll()
 	}
-	
+
 	// MARK: - Frame update
-	
+
 	override func update(_ currentTime: TimeInterval) {
 		let now = Date()
 		self.dateLabel.text = DateFormatter.localizedString(from: now, dateStyle: .medium, timeStyle: .none)
 		self.timeLabel.text = DateFormatter.localizedString(from: now, dateStyle: .none, timeStyle: .short)
 		self.secondsLabel.text = self.secondsDateFormatter.string(from: now)
 	}
-	
+
 	// MARK: - Touch events
-	
+
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.dateLabel.isHidden = self.clockMode
 		self.timeLabel.isHidden = self.clockMode

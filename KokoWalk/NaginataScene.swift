@@ -38,22 +38,22 @@ import SpriteKit
 import GameplayKit
 
 class NaginataScene: SKScene {
-	
+
 	var totalPoint: Int = 0
 
 	private var characterNode: SKSpriteNode!
 	private var suicaNode: SKSpriteNode!
 	private var countdownLabel: SKLabelNode!
 	private var pointLabel: SKLabelNode!
-	
+
 	private var startDate: Date!
 	private var lastUpdateTime: TimeInterval = 0
 	private var waitingTime: TimeInterval = 0
 	private var suicaInterval: TimeInterval = 2
-	
+
 	let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -270, highestValue: 170)
 
-	
+
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
 			super.sceneDidLoad()
@@ -76,7 +76,7 @@ class NaginataScene: SKScene {
 		self.startDate = Date()
 	}
 	// MARK: - Frame update
-	
+
 	override func update(_ currentTime: TimeInterval) {
 		if self.lastUpdateTime == 0 {
 			self.lastUpdateTime = currentTime
@@ -88,7 +88,7 @@ class NaginataScene: SKScene {
 		} else {
 			time = Int(120 - round(Date().timeIntervalSince(self.startDate)))
 		}
-		
+
 		if time < 0 {
 			if self.children.filter({$0.name == "activeSuica"}).count == 0 {
 				characterNode.texture = SKTexture(imageNamed: "ojisan_def")
@@ -100,13 +100,13 @@ class NaginataScene: SKScene {
 
 		let dt = currentTime - self.lastUpdateTime
 		self.waitingTime += dt
-		
+
 		if waitingTime >= suicaInterval {
 			self.waitingTime = 0
 			self.addSuica()
 			self.updateInterval()
 		}
-		
+
 		self.lastUpdateTime = currentTime
 	}
 
@@ -118,12 +118,12 @@ class NaginataScene: SKScene {
 			guard let suica = child as? SKSpriteNode else { continue }
 			guard let name = suica.name else { continue }
 			if name != "activeSuica" { continue }
-		
+
 			// Check attack position
 			if hypot(position.x - suica.position.x, position.y - suica.position.y) > suica.size.width / 2 {
 				continue
 			}
-			
+
 			// Attack action
 			let flip = position.x * characterNode.xScale > 0
 			if flip {
@@ -134,7 +134,7 @@ class NaginataScene: SKScene {
 				SKAction.wait(forDuration: 0.3),
 				SKAction.setTexture(SKTexture(imageNamed: "ojisan_def"))
 				]))
-			
+
 			// Add attack point
 			guard let created = suica.userData?["created"] as? Date else { continue }
 			let point: Double
@@ -144,7 +144,7 @@ class NaginataScene: SKScene {
 				point = (1.6 - Date().timeIntervalSince(created)) * 1000
 			}
 			totalPoint += Int(point)
-			
+
 			// Check first attack
 			if suica.action(forKey: "SuicaJoin") == nil { continue }
 			suica.removeAction(forKey: "SuicaJoin")
@@ -164,12 +164,12 @@ class NaginataScene: SKScene {
 			)
 		}
 	}
-	
+
 	func addSuica() {
 		if let suica = self.suicaNode.copy() as? SKSpriteNode {
 			suica.userData = ["created": Date()]
 			suica.name = "activeSuica"
-			
+
 			let direction: String
 			let xSide: CGFloat
 			if randomY.nextBool() {
@@ -187,11 +187,11 @@ class NaginataScene: SKScene {
 				SKAction.removeFromParent()
 				])
 				, withKey: "SuicaJoin")
-			
+
 			self.addChild(suica)
 		}
 	}
-	
+
 	func updateInterval() {
 		switch totalPoint {
 		case 0..<10000:
@@ -212,13 +212,13 @@ class NaginataScene: SKScene {
 			suicaInterval = 0.56
 		}
 	}
-	
+
 	// MARK: - Touch events
-	
+
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if let touch = touches.first {
 			self.attack(position: touch.location(in: self))
 		}
 	}
-	
+
 }

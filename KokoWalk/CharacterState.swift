@@ -48,7 +48,7 @@ let actionImages: [String: [String]] = [
 	"menu_item_irizaki": ["koufun", "may_p", "may_waki", "uttyae1", "uttyae2"],
 	"menu_item_mike": ["mike_banana", "mike_boushi", "mike_hai"],
 	"menu_item_maron": ["maron_maron", "motto_teyande", "teyande"]
-		
+
 ]
 
 let walk: [String: String] = [
@@ -64,7 +64,7 @@ let walk: [String: String] = [
 
 class CharacterState: GKState {
 	let characterNode: SKSpriteNode
-	
+
 	init(characterNode: SKSpriteNode) {
 		self.characterNode = characterNode
 	}
@@ -80,11 +80,11 @@ class JoiningState: CharacterState {
 			},
 			]))
 	}
-	
+
 	override func isValidNextState(_ stateClass: AnyClass) -> Bool {
 		return stateClass == WalkingState.self
 	}
-	
+
 	override func didEnter(from previousState: GKState?) {
 		let imageName = GKRandomSource().arrayByShufflingObjects(in: actionImages[characterNode.name!]!).first as! String
 		characterNode.texture = SKTexture(imageNamed: imageName)
@@ -92,9 +92,9 @@ class JoiningState: CharacterState {
 }
 
 class WalkingState: CharacterState {
-	
+
 	private var walkAction: SKAction!
-	
+
 	override init(characterNode: SKSpriteNode) {
 		super.init(characterNode: characterNode)
 		self.walkAction = SKAction.init(named: walk[characterNode.name!]!)!
@@ -122,7 +122,7 @@ class WalkingState: CharacterState {
 		characterNode.zPosition = point.y / -100
 
 	}
-	
+
 	override func isValidNextState(_ stateClass: AnyClass) -> Bool {
 		return stateClass == StoppingState.self
 	}
@@ -145,9 +145,9 @@ class StoppingState: CharacterState {
 }
 
 class ActionState: CharacterState {
-	
+
 	private var actions = [String]()
-	
+
 	override func update(deltaTime seconds: TimeInterval) {
 		if actions.isEmpty {
 			actions = GKRandomSource().arrayByShufflingObjects(in: actionImages[characterNode.name!]!) as! [String]
@@ -161,7 +161,7 @@ class ActionState: CharacterState {
 			},
 			]))
 	}
-	
+
 	override func isValidNextState(_ stateClass: AnyClass) -> Bool {
 		return stateClass == WalkingState.self
 	}

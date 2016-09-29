@@ -37,9 +37,9 @@
 import UIKit
 
 class CharacterCell: UICollectionViewCell {
-	
+
 	@IBOutlet weak var iconImageView: UIImageView!
-	
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		let borderLayer = CAShapeLayer()
@@ -50,5 +50,5 @@ class CharacterCell: UICollectionViewCell {
 		borderLayer.lineWidth = 20
 		layer.insertSublayer(borderLayer, at: 0)
 	}
-	
+
 }

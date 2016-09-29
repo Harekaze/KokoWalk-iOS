@@ -45,27 +45,27 @@ class NaginataDojoViewController: UIViewController {
 	@IBAction func handleExitButton(_ sender: UIButton) {
 		dismiss(animated: false)
 	}
-	
+
 	// MARK: - View initialization
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		if #available(iOS 10.0, *) {
 			if let scene = GKScene(fileNamed: "NaginataScene") {
-				
+
 				// Get the SKScene from the loaded GKScene
 				if let sceneNode = scene.rootNode as! NaginataScene? {
-					
+
 					// Set the scale mode to scale to fit the window
 					sceneNode.scaleMode = .aspectFill
-					
+
 					// Present the scene
 					if let view = self.view as! SKView? {
 						view.presentScene(sceneNode)
-						
+
 						view.ignoresSiblingOrder = true
-						
+
 						//view.showsFPS = true
 						//view.showsNodeCount = true
 					}
@@ -101,23 +101,23 @@ class NaginataDojoViewController: UIViewController {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-	
+
 	// MARK: - Device rotation
 
 	override var shouldAutorotate: Bool {
 		return true
 	}
-	
+
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 		return .landscape
 	}
-	
+
 	// MARK: - Status bar
 
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
-	
+
 	/*
 	// MARK: - Navigation
 
