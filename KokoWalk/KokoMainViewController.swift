@@ -149,11 +149,11 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	// MARK: Device rotation
 
 	override var shouldAutorotate: Bool {
-		return true
+		return false
 	}
 
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-		return .portrait
+		return .allButUpsideDown
 	}
 
 	// MARK: Status bar
