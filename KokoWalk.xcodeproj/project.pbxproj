@@ -19,6 +19,8 @@
 		9E91795E1D7B288100D572EA /* KokoWalkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91795D1D7B288100D572EA /* KokoWalkUITests.swift */; };
 		9E91796C1D7B33D200D572EA /* KokoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91796B1D7B33D200D572EA /* KokoMainViewController.swift */; };
 		9E91796E1D7B34DD00D572EA /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E91796D1D7B34DD00D572EA /* CharacterCell.swift */; };
+		9ED635791D9D4D6300624317 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED635781D9D4D6300624317 /* GameKit.framework */; };
+		9ED6357B1D9D5AB700624317 /* Stickers.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = 9ED6357A1D9D5AB700624317 /* Stickers.xcstickers */; };
 		9EF5D3E31D86B56B009E66BF /* NaginataScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9EF5D3E21D86B56B009E66BF /* NaginataScene.sks */; };
 		9EF5D3E51D86B7E3009E66BF /* NaginataDojoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF5D3E41D86B7E3009E66BF /* NaginataDojoViewController.swift */; };
 		9EF5D3E71D86B951009E66BF /* NaginataScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF5D3E61D86B951009E66BF /* NaginataScene.swift */; };
@@ -61,6 +63,8 @@
 		9E91795F1D7B288100D572EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E91796B1D7B33D200D572EA /* KokoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KokoMainViewController.swift; sourceTree = "<group>"; };
 		9E91796D1D7B34DD00D572EA /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		9ED635781D9D4D6300624317 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		9ED6357A1D9D5AB700624317 /* Stickers.xcstickers */ = {isa = PBXFileReference; lastKnownFileType = folder.stickers; path = Stickers.xcstickers; sourceTree = "<group>"; };
 		9EF5D3E21D86B56B009E66BF /* NaginataScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = NaginataScene.sks; sourceTree = "<group>"; };
 		9EF5D3E41D86B7E3009E66BF /* NaginataDojoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaginataDojoViewController.swift; sourceTree = "<group>"; };
 		9EF5D3E61D86B951009E66BF /* NaginataScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaginataScene.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED635791D9D4D6300624317 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +104,7 @@
 				9E9179511D7B288100D572EA /* KokoWalkTests */,
 				9E91795C1D7B288100D572EA /* KokoWalkUITests */,
 				9E9179351D7B288000D572EA /* Products */,
+				9ED635771D9D4D6300624317 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +134,7 @@
 				9E20EB171D83BAB1003A67A2 /* CharacterState.swift */,
 				9E9179411D7B288000D572EA /* Main.storyboard */,
 				9E9179441D7B288000D572EA /* Assets.xcassets */,
+				9ED6357A1D9D5AB700624317 /* Stickers.xcstickers */,
 				9E9179461D7B288000D572EA /* LaunchScreen.storyboard */,
 				9E9179491D7B288000D572EA /* Info.plist */,
 			);
@@ -150,6 +157,14 @@
 				9E91795F1D7B288100D572EA /* Info.plist */,
 			);
 			path = KokoWalkUITests;
+			sourceTree = "<group>";
+		};
+		9ED635771D9D4D6300624317 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9ED635781D9D4D6300624317 /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +236,11 @@
 					9E9179331D7B288000D572EA = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					9E91794D1D7B288100D572EA = {
 						CreatedOnToolsVersion = 8.0;
@@ -263,6 +283,7 @@
 				9E91793A1D7B288000D572EA /* GameScene.sks in Resources */,
 				9E9179451D7B288000D572EA /* Assets.xcassets in Resources */,
 				9EF5D3E31D86B56B009E66BF /* NaginataScene.sks in Resources */,
+				9ED6357B1D9D5AB700624317 /* Stickers.xcstickers in Resources */,
 				9EF5D4291D86C82E009E66BF /* NaginataActions.sks in Resources */,
 				9E9179481D7B288000D572EA /* LaunchScreen.storyboard in Resources */,
 				9E91793C1D7B288000D572EA /* Actions.sks in Resources */,

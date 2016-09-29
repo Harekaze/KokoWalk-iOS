@@ -1,0 +1,38 @@
+{
+  "stickers" : [
+    {
+      "filename" : "koufun.sticker"
+    },
+    {
+      "filename" : "zona_p.sticker"
+    },
+    {
+      "filename" : "hai.sticker"
+    },
+    {
+      "filename" : "washimoikou2.sticker"
+    },
+    {
+      "filename" : "teyande.sticker"
+    },
+    {
+      "filename" : "mike_boushi.sticker"
+    },
+    {
+      "filename" : "siro_oko.sticker"
+    },
+    {
+      "filename" : "kokowalk.stickersequence"
+    },
+    {
+      "filename" : "naginata.stickersequence"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "grid-size" : "small"
+  }
+}
