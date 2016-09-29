@@ -52,7 +52,7 @@ class NaginataDojoViewController: UIViewController {
 		guard let naginataScene = view.scene as! NaginataScene? else { return }
 		if let shareCompose = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
 			UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0)
-			self.view!.drawHierarchy(in: self.view!.bounds, afterScreenUpdates: true)
+			view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
 			let image = UIGraphicsGetImageFromCurrentImageContext()!
 			UIGraphicsEndImageContext()
 			shareCompose.add(image)
