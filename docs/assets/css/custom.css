@@ -24,18 +24,20 @@ html, body {
 
 body {
   width: 100%;
-  max-height: 100%;
-  background: #65AD88;
+  min-height: 100%;
+  background: #52856A;
   background: -moz-linear-gradient(top,  #65AD88 0%, #52856A 100%);
   background: -webkit-linear-gradient(top,  #65AD88 0%,#52856A 100%);
   background: linear-gradient(to bottom,  #65AD88 0%,#52856A 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#65AD88', endColorstr='#52856A',GradientType=0 );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* Content */
 main {
   height: 100%;
-  width: 600px;
+  width: 640px;
   margin: 0 auto;
   display: flex;
 }
@@ -47,7 +49,7 @@ main section {
 
 main section {
   display: block;
-  height: 10%;
+  height: 300px;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -63,10 +65,21 @@ main section * {
 main img[alt="Preview"] {
   width: auto;
   height: auto;
-  max-height: 80%;
+  max-height: 90%;
+  max-width: 60%;
   margin: auto;
   text-align: center;
   display: block;
+}
+
+main img[alt="App Store からダウンロード"] {
+  padding: 10px;
+  width: 70%;
+}
+
+main img[alt="Google Play で手に入れよう"] {
+  width: 70%;
+  margin-bottom: 60px;
 }
 
 /* Footer */
@@ -79,8 +92,14 @@ footer {
   width: 100%;
   z-index: 5;
   background: rgba(0,0,0,0.7);
-  font-size: 0.5em;
+  font-size: 0.4em;
   color: white;
+}
+
+footer p {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
 }
 
 footer a {
@@ -89,10 +108,12 @@ footer a {
 }
 
 /* Media query */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
   main {
     max-width: 100% !important;
+    min-height: 500px !important;
     display: block !important;
+    padding-bottom: 300px;
   }
 
   img[alt="Preview"] {
@@ -101,6 +122,15 @@ footer a {
 
   footer {
     font-size: 6px !important;
+  }
+
+
+  main img[alt="App Store からダウンロード"] {
+    width: 100px;
+  }
+
+  main img[alt="Google Play で手に入れよう"] {
+    width: 100px;
   }
 
 }
