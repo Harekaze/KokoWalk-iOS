@@ -49,7 +49,7 @@ class NaginataDojoViewController: UIViewController {
 	// MARK: - View initialization
 	
 	override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 
 		if #available(iOS 10.0, *) {
 			if let scene = GKScene(fileNamed: "NaginataScene") {
@@ -88,7 +88,7 @@ class NaginataDojoViewController: UIViewController {
 				skView.presentScene(scene)
 			}
 		}
-    }
+	}
 
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
@@ -97,10 +97,10 @@ class NaginataDojoViewController: UIViewController {
 		}
 	}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
 	
 	// MARK: - Device rotation
 
@@ -118,14 +118,14 @@ class NaginataDojoViewController: UIViewController {
 		return true
 	}
 	
-    /*
-    // MARK: - Navigation
+	/*
+	// MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	// In a storyboard-based application, you will often want to do a little preparation before navigation
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		// Get the new view controller using segue.destinationViewController.
+		// Pass the selected object to the new view controller.
+	}
+	*/
 
 }
