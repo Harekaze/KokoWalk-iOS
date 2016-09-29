@@ -155,6 +155,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if keyPath == "clockMode" {
 			clearButton.isHidden = gameScene.clockMode
+			washimoiruzoButton.alpha = gameScene.clockMode ? 0 : 1
 		}
 	}
 
