@@ -38,8 +38,6 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-private let reuseIdentifier = "Cell"
-
 class KokoMainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
 	// MARK: Private constant values
