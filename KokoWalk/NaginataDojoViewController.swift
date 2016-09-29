@@ -37,6 +37,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import Social
 
 class NaginataDojoViewController: UIViewController {
 
@@ -44,6 +45,23 @@ class NaginataDojoViewController: UIViewController {
 
 	@IBAction func handleExitButton(_ sender: UIButton) {
 		dismiss(animated: false)
+	}
+
+	@IBAction func handleScoreButton(_ sender: UIButton) {
+		guard let view = self.view as! SKView? else { return }
+		guard let naginataScene = view.scene as! NaginataScene? else { return }
+		if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
+			if let shareCompose = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
+				UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0)
+				self.view!.drawHierarchy(in: self.view!.bounds, afterScreenUpdates: true)
+				let image = UIGraphicsGetImageFromCurrentImageContext()!
+				UIGraphicsEndImageContext()
+				shareCompose.add(image)
+				shareCompose.add(URL(string: "https://harekaze.org/KokoWalk-iOS/")!)
+				shareCompose.setInitialText("KokoWalk for iOSの薙刀道場で\(naginataScene.totalPoint)pt獲得しました！ #KokoWalk #NaginataScore")
+				present(shareCompose, animated: true)
+			}
+		}
 	}
 
 	// MARK: View initialization

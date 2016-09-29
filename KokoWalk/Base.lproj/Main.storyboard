@@ -149,11 +149,28 @@
                                     <action selector="handleExitButton:" destination="xsc-O6-tEc" eventType="touchUpInside" id="INA-uP-4Fn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLR-gF-QPG">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="LEf-zR-jfl"/>
+                                    <constraint firstAttribute="width" constant="64" id="sKY-JK-UQc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="SCORE">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleScoreButton:" destination="xsc-O6-tEc" eventType="touchUpInside" id="GQU-sA-oCC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iLR-gF-QPG" firstAttribute="top" secondItem="Sa1-t6-pcW" secondAttribute="topMargin" constant="20" id="Kl1-lj-Iyl"/>
                             <constraint firstItem="y1r-bD-3GV" firstAttribute="centerX" secondItem="Sa1-t6-pcW" secondAttribute="centerX" constant="-100" id="WHA-wT-Uq8"/>
                             <constraint firstItem="y1r-bD-3GV" firstAttribute="top" secondItem="Sa1-t6-pcW" secondAttribute="topMargin" constant="20" id="wA7-Cr-owe"/>
+                            <constraint firstItem="iLR-gF-QPG" firstAttribute="centerX" secondItem="Sa1-t6-pcW" secondAttribute="centerX" constant="100" id="ylU-lC-dwh"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
