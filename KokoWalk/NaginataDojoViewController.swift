@@ -42,6 +42,10 @@ import GameKit
 
 class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelegate {
 
+	// MARK: Private fields
+	private lazy var localPlayer = GKLocalPlayer.localPlayer()
+	private var leaderboardIdentifier = ""
+
 	// MARK: Interface Builder actions
 
 	@IBAction func handleExitButton(_ sender: UIButton) {
@@ -72,37 +76,49 @@ class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelega
 			guard let view = self.view as! SKView? else { return }
 			guard let naginataScene = view.scene as! NaginataScene? else { return }
 
-			let localPlayer = GKLocalPlayer.localPlayer()
-			localPlayer.authenticateHandler = {(viewController, error) in
-				if let error = error {
-					self.present(UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .alert), animated: true)
-					return
-				}
-
-				if let viewController = viewController {
-					self.present(viewController, animated: true, completion: nil)
-				}
-
-				if !localPlayer.isAuthenticated {
-					self.present(UIAlertController(title: "エラー", message: "ログインに失敗しました。", preferredStyle: .alert), animated: true)
-					return
-				}
-
-				localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifier, error) in
+			if !self.localPlayer.isAuthenticated {
+				self.localPlayer.authenticateHandler = {(viewController, error) in
 					if let error = error {
 						self.present(UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .alert), animated: true)
-					} else {
-						let score = GKScore(leaderboardIdentifier: leaderboardIdentifier!, player: localPlayer)
-						score.value = Int64(naginataScene.totalPoint)
-						GKScore.report([score])
-
-						let gameCenterController = GKGameCenterViewController()
-						gameCenterController.gameCenterDelegate = self
-						gameCenterController.viewState = .leaderboards
-						gameCenterController.leaderboardIdentifier = leaderboardIdentifier
-						self.present(gameCenterController, animated: true, completion: nil)
+						return
 					}
-				})
+
+					if let viewController = viewController {
+						self.present(viewController, animated: true, completion: nil)
+					}
+
+					if !self.localPlayer.isAuthenticated {
+						self.present(UIAlertController(title: "エラー", message: "ログインに失敗しました。", preferredStyle: .alert), animated: true)
+						return
+					}
+
+					self.localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifier, error) in
+						if let error = error {
+							self.present(UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .alert), animated: true)
+						} else {
+							self.leaderboardIdentifier = leaderboardIdentifier!
+							let score = GKScore(leaderboardIdentifier: self.leaderboardIdentifier, player: self.localPlayer)
+							score.value = Int64(naginataScene.totalPoint)
+							GKScore.report([score])
+
+							let gameCenterController = GKGameCenterViewController()
+							gameCenterController.gameCenterDelegate = self
+							gameCenterController.viewState = .leaderboards
+							gameCenterController.leaderboardIdentifier = self.leaderboardIdentifier
+							self.present(gameCenterController, animated: true)
+						}
+					})
+				}
+			} else {
+				let score = GKScore(leaderboardIdentifier: self.leaderboardIdentifier, player: self.localPlayer)
+				score.value = Int64(naginataScene.totalPoint)
+				GKScore.report([score])
+
+				let gameCenterController = GKGameCenterViewController()
+				gameCenterController.gameCenterDelegate = self
+				gameCenterController.viewState = .leaderboards
+				gameCenterController.leaderboardIdentifier = self.leaderboardIdentifier
+				self.present(gameCenterController, animated: true)
 			}
 		})
 
