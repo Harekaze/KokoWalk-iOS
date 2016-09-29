@@ -50,25 +50,29 @@ class GameScene: SKScene {
 	private var secondsLabel: SKLabelNode!
 	private var secondsDateFormatter: DateFormatter!
 	
-	override func sceneDidLoad() {		
-		self.characterNode = SKSpriteNode(imageNamed: "asisu")
-
-		if let characterNode = self.characterNode {
-			characterNode.position = CGPoint(x: -215, y: 315)
-			characterNode.name = "Charater"
-			characterNode.scale(to: CGSize(width: 268, height: 508))
-			characterNode.zPosition = 4
-			characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
-		}
-		
-		Timer.scheduledTimer(withTimeInterval: 1.6, repeats: true, block: {
-			timer in
-			for stateMachine in self.stateMachines {
-				if stateMachine.currentState is JoiningState {
-					stateMachine.update(deltaTime: 0)
-				}
+	override func sceneDidLoad() {
+		if #available(iOS 10.0, *) {
+			super.sceneDidLoad()
+			if let characterNode = self.characterNode {
+				characterNode.position = CGPoint(x: -215, y: 315)
+				characterNode.name = "Charater"
+				characterNode.scale(to: CGSize(width: 268, height: 508))
+				characterNode.zPosition = 4
+				characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
 			}
-		})
+
+			Timer.scheduledTimer(withTimeInterval: 1.6, repeats: true, block: {
+				timer in
+				for stateMachine in self.stateMachines {
+					if stateMachine.currentState is JoiningState {
+						stateMachine.update(deltaTime: 0)
+					}
+				}
+			})
+		}
+
+
+		self.characterNode = SKSpriteNode(imageNamed: "asisu")
 
 		self.dateLabel = self.childNode(withName: "//date") as? SKLabelNode
 		self.timeLabel = self.childNode(withName: "//time") as? SKLabelNode
@@ -76,7 +80,40 @@ class GameScene: SKScene {
 		self.secondsDateFormatter = DateFormatter()
 		self.secondsDateFormatter.dateFormat = "ss"
 	}
-	
+
+	// MARK: - FOR IOS9 SUPPORT
+
+	override func didMove(to view: SKView) {
+		super.didMove(to: view)
+		if #available(iOS 10.0, *) {} else {
+			self.characterNode = SKSpriteNode(imageNamed: "asisu")
+
+			if let characterNode = self.characterNode {
+				characterNode.position = CGPoint(x: -215, y: 315)
+				characterNode.name = "Charater"
+				characterNode.setScale(268 / characterNode.size.width)
+				characterNode.zPosition = 4
+				characterNode.run(SKAction.init(named: "Join")!, withKey: "join")
+			}
+
+			Timer.scheduledTimer(timeInterval: 1.6, target: self, selector: #selector(loop), userInfo: nil, repeats: true)
+			self.dateLabel = self.childNode(withName: "//date") as? SKLabelNode
+			self.timeLabel = self.childNode(withName: "//time") as? SKLabelNode
+			self.secondsLabel = self.childNode(withName: "//seconds") as? SKLabelNode
+			self.secondsDateFormatter = DateFormatter()
+			self.secondsDateFormatter.dateFormat = "ss"
+		}
+	}
+
+	func loop() {
+		for stateMachine in self.stateMachines {
+			if stateMachine.currentState is JoiningState {
+				stateMachine.update(deltaTime: 0)
+			}
+		}
+	}
+
+
 	// MARK: - Character addition
 	
 	func addCharacter(name: String) {
@@ -113,7 +150,11 @@ class GameScene: SKScene {
 		let characterNode = SKSpriteNode(imageNamed: "washimoikou2")
 		characterNode.position = CGPoint(x: 550, y: -350)
 		characterNode.name = "Washimoiruzo"
-		characterNode.scale(to: CGSize(width: 268, height: 508))
+		if #available(iOS 10.0, *) {
+			characterNode.scale(to: CGSize(width: 268, height: 508))
+		} else {
+			characterNode.setScale(268 / characterNode.size.width)
+		}
 		characterNode.zPosition = 4
 		characterNode.run(SKAction.sequence([
 			SKAction.init(named: "Washimoiruzo")!,

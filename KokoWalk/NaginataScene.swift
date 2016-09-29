@@ -55,6 +55,9 @@ class NaginataScene: SKScene {
 
 	
 	override func sceneDidLoad() {
+		if #available(iOS 10.0, *) {
+			super.sceneDidLoad()
+		}
 		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
 		self.suicaNode = self.childNode(withName: "//suica") as? SKSpriteNode
 		self.countdownLabel = self.childNode(withName: "//countdown") as? SKLabelNode
@@ -62,14 +65,30 @@ class NaginataScene: SKScene {
 		self.startDate = Date()
 	}
 
+	// MARK: - FOR IOS9 SUPPORT
+
+	override func didMove(to view: SKView) {
+		super.didMove(to: view)
+		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
+		self.suicaNode = self.childNode(withName: "//suica") as? SKSpriteNode
+		self.countdownLabel = self.childNode(withName: "//countdown") as? SKLabelNode
+		self.pointLabel = self.childNode(withName: "//point") as? SKLabelNode
+		self.startDate = Date()
+	}
 	// MARK: - Frame update
 	
 	override func update(_ currentTime: TimeInterval) {
 		if self.lastUpdateTime == 0 {
 			self.lastUpdateTime = currentTime
 		}
+
+		let time: Int
+		if #available(iOS 10.0, *) {
+			time = Int(120 - round(DateInterval(start: self.startDate, end: Date()).duration))
+		} else {
+			time = Int(120 - round(Date().timeIntervalSince(self.startDate)))
+		}
 		
-		let time = Int(120 - round(DateInterval(start: self.startDate, end: Date()).duration))
 		if time < 0 {
 			if self.children.filter({$0.name == "activeSuica"}).count == 0 {
 				characterNode.texture = SKTexture(imageNamed: "ojisan_def")
@@ -118,7 +137,12 @@ class NaginataScene: SKScene {
 			
 			// Add attack point
 			guard let created = suica.userData?["created"] as? Date else { continue }
-			let point = (1.6 - DateInterval(start: created, end: Date()).duration) * 1000
+			let point: Double
+			if #available(iOS 10.0, *) {
+				point = (1.6 - DateInterval(start: created, end: Date()).duration) * 1000
+			} else {
+				point = (1.6 - Date().timeIntervalSince(created)) * 1000
+			}
 			totalPoint += Int(point)
 			
 			// Check first attack

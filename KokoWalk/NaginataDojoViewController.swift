@@ -48,30 +48,48 @@ class NaginataDojoViewController: UIViewController {
 	
 	// MARK: - View initialization
 	
-    override func viewDidLoad() {
+	override func viewDidLoad() {
         super.viewDidLoad()
 
-		if let scene = GKScene(fileNamed: "NaginataScene") {
-			
-			// Get the SKScene from the loaded GKScene
-			if let sceneNode = scene.rootNode as! NaginataScene? {
+		if #available(iOS 10.0, *) {
+			if let scene = GKScene(fileNamed: "NaginataScene") {
 				
-				// Set the scale mode to scale to fit the window
-				sceneNode.scaleMode = .aspectFill
-				
-				// Present the scene
-				if let view = self.view as! SKView? {
-					view.presentScene(sceneNode)
+				// Get the SKScene from the loaded GKScene
+				if let sceneNode = scene.rootNode as! NaginataScene? {
 					
-					view.ignoresSiblingOrder = true
+					// Set the scale mode to scale to fit the window
+					sceneNode.scaleMode = .aspectFill
 					
-					//view.showsFPS = true
-					//view.showsNodeCount = true
+					// Present the scene
+					if let view = self.view as! SKView? {
+						view.presentScene(sceneNode)
+						
+						view.ignoresSiblingOrder = true
+						
+						//view.showsFPS = true
+						//view.showsNodeCount = true
+					}
 				}
+			}
+		} else {
+			if let scene = GameScene(fileNamed:"NaginataScene") {
+
+				// Configure the view.
+				let skView = self.view as! SKView
+				//skView.showsFPS = true
+				//skView.showsNodeCount = true
+
+				/* Sprite Kit applies additional optimizations to improve rendering performance */
+				skView.ignoresSiblingOrder = true
+
+				/* Set the scale mode to scale to fit the window */
+				scene.scaleMode = .aspectFill
+
+				skView.presentScene(scene)
 			}
 		}
     }
-	
+
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		if let view = self.view as? SKView {

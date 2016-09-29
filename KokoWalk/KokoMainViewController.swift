@@ -91,23 +91,42 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 		self.characterModeCollectionView.delegate = self
 		
-		if let scene = GKScene(fileNamed: "GameScene") {
-			
-			// Get the SKScene from the loaded GKScene
-			if let sceneNode = scene.rootNode as! GameScene? {
-				self.gameScene = sceneNode
-				
-				// Set the scale mode to scale to fit the window
-				sceneNode.scaleMode = .aspectFill
-				
-				// Present the scene
-				sceneView.presentScene(sceneNode)
-				
+		if #available(iOS 10.0, *) {
+			if let scene = GKScene(fileNamed: "GameScene") {
+				// Get the SKScene from the loaded GKScene
+				if let sceneNode = scene.rootNode as! GameScene? {
+					self.gameScene = sceneNode
+					
+					// Set the scale mode to scale to fit the window
+					sceneNode.scaleMode = .aspectFill
+					
+					// Present the scene
+					sceneView.presentScene(sceneNode)
+					
+					sceneView.ignoresSiblingOrder = true
+					
+					//sceneView.showsFPS = true
+					//sceneView.showsNodeCount = true
+					
+					gameScene.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
+				}
+			}
+		} else {
+			if let scene = GameScene(fileNamed:"GameScene") {
+				self.gameScene = scene
+
+				// Configure the view.
+				//sceneView.showsFPS = true
+				//sceneView.showsNodeCount = true
+
+				/* Sprite Kit applies additional optimizations to improve rendering performance */
 				sceneView.ignoresSiblingOrder = true
-				
-//				sceneView.showsFPS = true
-//				sceneView.showsNodeCount = true
-				
+
+				/* Set the scale mode to scale to fit the window */
+				scene.scaleMode = .aspectFill
+
+				sceneView.presentScene(scene)
+
 				gameScene.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 			}
 		}
