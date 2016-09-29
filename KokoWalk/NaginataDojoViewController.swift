@@ -48,18 +48,26 @@ class NaginataDojoViewController: UIViewController {
 	}
 
 	@IBAction func handleScoreButton(_ sender: UIButton) {
-		guard let view = self.view as! SKView? else { return }
-		guard let naginataScene = view.scene as! NaginataScene? else { return }
-		if let shareCompose = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
-			UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0)
-			view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-			let image = UIGraphicsGetImageFromCurrentImageContext()!
-			UIGraphicsEndImageContext()
-			shareCompose.add(image)
-			shareCompose.add(URL(string: "https://harekaze.org/KokoWalk-iOS/")!)
-			shareCompose.setInitialText("KokoWalk for iOSの薙刀道場で\(naginataScene.totalPoint)pt獲得しました！ #KokoWalk #NaginataScore")
-			present(shareCompose, animated: true)
-		}
+		let alertController = UIAlertController(title: "薙刀道場スコア", message: nil, preferredStyle: .actionSheet)
+		let shareTwitter = UIAlertAction(title: "Twitterで共有", style: .default, handler:{
+			_ in
+			guard let view = self.view as! SKView? else { return }
+			guard let naginataScene = view.scene as! NaginataScene? else { return }
+			if let shareCompose = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
+				UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0)
+				view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+				let image = UIGraphicsGetImageFromCurrentImageContext()!
+				UIGraphicsEndImageContext()
+				shareCompose.add(image)
+				shareCompose.add(URL(string: "https://harekaze.org/KokoWalk-iOS/")!)
+				shareCompose.setInitialText("KokoWalk for iOSの薙刀道場で\(naginataScene.totalPoint)pt獲得しました！ #KokoWalk #NaginataScore")
+				self.present(shareCompose, animated: true)
+			}
+		})
+		let cancel = UIAlertAction(title: "cancel", style: .cancel)
+		alertController.addAction(shareTwitter)
+		alertController.addAction(cancel)
+		present(alertController, animated: true)
 	}
 
 	// MARK: View initialization
