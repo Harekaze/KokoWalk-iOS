@@ -52,7 +52,8 @@ class GameScene: SKScene {
 	
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
-			super.sceneDidLoad()
+			self.characterNode = SKSpriteNode(imageNamed: "asisu")
+			
 			if let characterNode = self.characterNode {
 				characterNode.position = CGPoint(x: -215, y: 315)
 				characterNode.name = "Charater"
@@ -70,9 +71,6 @@ class GameScene: SKScene {
 				}
 			})
 		}
-
-
-		self.characterNode = SKSpriteNode(imageNamed: "asisu")
 
 		self.dateLabel = self.childNode(withName: "//date") as? SKLabelNode
 		self.timeLabel = self.childNode(withName: "//time") as? SKLabelNode
