@@ -168,9 +168,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="iLR-gF-QPG" firstAttribute="top" secondItem="Sa1-t6-pcW" secondAttribute="topMargin" constant="20" id="Kl1-lj-Iyl"/>
-                            <constraint firstItem="y1r-bD-3GV" firstAttribute="centerX" secondItem="Sa1-t6-pcW" secondAttribute="centerX" constant="-100" id="WHA-wT-Uq8"/>
+                            <constraint firstItem="y1r-bD-3GV" firstAttribute="centerX" secondItem="Sa1-t6-pcW" secondAttribute="centerX" constant="-80" id="WHA-wT-Uq8"/>
                             <constraint firstItem="y1r-bD-3GV" firstAttribute="top" secondItem="Sa1-t6-pcW" secondAttribute="topMargin" constant="20" id="wA7-Cr-owe"/>
-                            <constraint firstItem="iLR-gF-QPG" firstAttribute="centerX" secondItem="Sa1-t6-pcW" secondAttribute="centerX" constant="100" id="ylU-lC-dwh"/>
+                            <constraint firstItem="iLR-gF-QPG" firstAttribute="centerX" secondItem="Sa1-t6-pcW" secondAttribute="centerX" constant="80" id="ylU-lC-dwh"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
