@@ -81,13 +81,13 @@ class NaginataDojoViewController: UIViewController {
 				}
 			}
 		} else {
-			if let scene = GameScene(fileNamed:"NaginataScene") {
-				let skView = self.view as! SKView
+			if let sceneNode = GameScene(fileNamed:"NaginataScene") {
+				sceneNode.scaleMode = .aspectFill
 
-				skView.ignoresSiblingOrder = true
-				scene.scaleMode = .aspectFill
-
-				skView.presentScene(scene)
+				if let view = self.view as! SKView? {
+					view.presentScene(sceneNode)
+					view.ignoresSiblingOrder = true
+				}
 			}
 		}
 	}

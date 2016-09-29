@@ -105,13 +105,13 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 				}
 			}
 		} else {
-			if let scene = GameScene(fileNamed:"GameScene") {
-				self.gameScene = scene
+			if let sceneNode = GameScene(fileNamed:"GameScene") {
+				self.gameScene = sceneNode
 
+				sceneNode.scaleMode = .aspectFill
+
+				sceneView.presentScene(sceneNode)
 				sceneView.ignoresSiblingOrder = true
-				scene.scaleMode = .aspectFill
-
-				sceneView.presentScene(scene)
 
 				gameScene.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 			}
