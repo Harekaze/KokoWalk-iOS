@@ -40,55 +40,41 @@ import GameplayKit
 
 class NaginataDojoViewController: UIViewController {
 
-	// MARK: - Interface Builder actions
+	// MARK: Interface Builder actions
 
 	@IBAction func handleExitButton(_ sender: UIButton) {
 		dismiss(animated: false)
 	}
 
-	// MARK: - View initialization
+	// MARK: View initialization
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		if #available(iOS 10.0, *) {
 			if let scene = GKScene(fileNamed: "NaginataScene") {
-
-				// Get the SKScene from the loaded GKScene
 				if let sceneNode = scene.rootNode as! NaginataScene? {
-
-					// Set the scale mode to scale to fit the window
 					sceneNode.scaleMode = .aspectFill
 
-					// Present the scene
 					if let view = self.view as! SKView? {
 						view.presentScene(sceneNode)
-
 						view.ignoresSiblingOrder = true
-
-						//view.showsFPS = true
-						//view.showsNodeCount = true
 					}
 				}
 			}
 		} else {
 			if let scene = GameScene(fileNamed:"NaginataScene") {
-
-				// Configure the view.
 				let skView = self.view as! SKView
-				//skView.showsFPS = true
-				//skView.showsNodeCount = true
 
-				/* Sprite Kit applies additional optimizations to improve rendering performance */
 				skView.ignoresSiblingOrder = true
-
-				/* Set the scale mode to scale to fit the window */
 				scene.scaleMode = .aspectFill
 
 				skView.presentScene(scene)
 			}
 		}
 	}
+
+	// MARK: View appearing/disappearing
 
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
@@ -97,12 +83,13 @@ class NaginataDojoViewController: UIViewController {
 		}
 	}
 
+	// MARK: Resource management
+
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 
-	// MARK: - Device rotation
+	// MARK: Device rotation
 
 	override var shouldAutorotate: Bool {
 		return true
@@ -112,14 +99,14 @@ class NaginataDojoViewController: UIViewController {
 		return .landscape
 	}
 
-	// MARK: - Status bar
+	// MARK: Status bar
 
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
 
 	/*
-	// MARK: - Navigation
+	// MARK: Navigation
 
 	// In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

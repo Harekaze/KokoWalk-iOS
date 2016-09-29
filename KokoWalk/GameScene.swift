@@ -79,7 +79,7 @@ class GameScene: SKScene {
 		self.secondsDateFormatter.dateFormat = "ss"
 	}
 
-	// MARK: - FOR IOS9 SUPPORT
+	// MARK: FOR IOS9 SUPPORT
 
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
@@ -112,7 +112,7 @@ class GameScene: SKScene {
 	}
 
 
-	// MARK: - Character addition
+	// MARK: Character addition
 
 	func addCharacter(name: String) {
 		if characterNodes.count > 20 {
@@ -162,7 +162,7 @@ class GameScene: SKScene {
 		self.addChild(characterNode)
 	}
 
-	// MARK: - Character deletion
+	// MARK: Character deletion
 
 	func clearAll() {
 		for characterNode in self.characterNodes {
@@ -172,7 +172,7 @@ class GameScene: SKScene {
 		stateMachines.removeAll()
 	}
 
-	// MARK: - Frame update
+	// MARK: Frame update
 
 	override func update(_ currentTime: TimeInterval) {
 		let now = Date()
@@ -181,7 +181,7 @@ class GameScene: SKScene {
 		self.secondsLabel.text = self.secondsDateFormatter.string(from: now)
 	}
 
-	// MARK: - Touch events
+	// MARK: Touch events
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		self.dateLabel.isHidden = self.clockMode

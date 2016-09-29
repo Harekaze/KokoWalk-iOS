@@ -65,7 +65,7 @@ class NaginataScene: SKScene {
 		self.startDate = Date()
 	}
 
-	// MARK: - FOR IOS9 SUPPORT
+	// MARK: FOR IOS9 SUPPORT
 
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
@@ -75,7 +75,7 @@ class NaginataScene: SKScene {
 		self.pointLabel = self.childNode(withName: "//point") as? SKLabelNode
 		self.startDate = Date()
 	}
-	// MARK: - Frame update
+	// MARK: Frame update
 
 	override func update(_ currentTime: TimeInterval) {
 		if self.lastUpdateTime == 0 {
@@ -110,7 +110,7 @@ class NaginataScene: SKScene {
 		self.lastUpdateTime = currentTime
 	}
 
-	// MARK: - Action
+	// MARK: Action
 
 	func attack(position: CGPoint) {
 		for child in self.children {
@@ -213,7 +213,7 @@ class NaginataScene: SKScene {
 		}
 	}
 
-	// MARK: - Touch events
+	// MARK: Touch events
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if let touch = touches.first {

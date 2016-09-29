@@ -42,7 +42,7 @@ private let reuseIdentifier = "Cell"
 
 class KokoMainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-	// MARK: - Private constant values
+	// MARK: Private constant values
 	private let dataSource: [String] = [
 		"menu_item_koko",
 		"menu_item_mi",
@@ -61,17 +61,17 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		"menu_item_nop",
 	]
 
-	// MARK: - Private instance fields
+	// MARK: Private instance fields
 	private var gameScene: GameScene!
 
-	// MARK: - Interface Builder outlets
+	// MARK: Interface Builder outlets
 
 	@IBOutlet weak var sceneView: SKView!
 	@IBOutlet weak var characterModeCollectionView: UICollectionView!
 	@IBOutlet weak var washimoiruzoButton: UIButton!
 	@IBOutlet weak var clearButton: UIButton!
 
-	// MARK: - Interface Builder actions
+	// MARK: Interface Builder actions
 
 	@IBAction func handleClearButton(_ sender: UIButton) {
 		self.gameScene.clearAll()
@@ -84,7 +84,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		})
 	}
 
-	// MARK: - View initialization
+	// MARK: View initialization
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -93,20 +93,13 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 		if #available(iOS 10.0, *) {
 			if let scene = GKScene(fileNamed: "GameScene") {
-				// Get the SKScene from the loaded GKScene
 				if let sceneNode = scene.rootNode as! GameScene? {
 					self.gameScene = sceneNode
 
-					// Set the scale mode to scale to fit the window
 					sceneNode.scaleMode = .aspectFill
 
-					// Present the scene
 					sceneView.presentScene(sceneNode)
-
 					sceneView.ignoresSiblingOrder = true
-
-					//sceneView.showsFPS = true
-					//sceneView.showsNodeCount = true
 
 					gameScene.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 				}
@@ -115,14 +108,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 			if let scene = GameScene(fileNamed:"GameScene") {
 				self.gameScene = scene
 
-				// Configure the view.
-				//sceneView.showsFPS = true
-				//sceneView.showsNodeCount = true
-
-				/* Sprite Kit applies additional optimizations to improve rendering performance */
 				sceneView.ignoresSiblingOrder = true
-
-				/* Set the scale mode to scale to fit the window */
 				scene.scaleMode = .aspectFill
 
 				sceneView.presentScene(scene)
@@ -133,7 +119,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 	}
 
-	// View appearing/disappearing
+	// MARK: View appearing/disappearing
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -145,12 +131,13 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		sceneView.isPaused = true
 	}
 
+	// MARK: Resource management
+
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 
-	// MARK: - Observer
+	// MARK: Observer
 
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if keyPath == "clockMode" {
@@ -159,18 +146,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		}
 	}
 
-	/*
-	// MARK: - Navigation
-
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		// Get the new view controller using [segue destinationViewController].
-		// Pass the selected object to the new view controller.
-	}
-	*/
-
-
-	// MARK: - Device rotation
+	// MARK: Device rotation
 
 	override var shouldAutorotate: Bool {
 		return true
@@ -180,7 +156,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		return .portrait
 	}
 
-	// MARK: - Status bar
+	// MARK: Status bar
 
 	override var prefersStatusBarHidden: Bool {
 		return true
@@ -193,7 +169,6 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		return 1
 	}
 
-
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return dataSource.count
 	}
@@ -204,7 +179,6 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		}
 		return CGSize(width: 78, height: 78)
 	}
-
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath) as! CharacterCell
