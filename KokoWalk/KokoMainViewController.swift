@@ -120,6 +120,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	// MARK: View appearing/disappearing
 
 	override func viewWillAppear(_ animated: Bool) {
+		UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
 		super.viewWillAppear(animated)
 		sceneView.isPaused = false
 	}
@@ -147,11 +148,11 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	// MARK: Device rotation
 
 	override var shouldAutorotate: Bool {
-		return false
+		return true
 	}
 
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-		return .allButUpsideDown
+		return sceneView == nil || sceneView.isPaused ? .allButUpsideDown : .portrait
 	}
 
 	// MARK: Status bar
