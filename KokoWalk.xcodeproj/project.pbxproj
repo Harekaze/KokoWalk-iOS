@@ -443,7 +443,7 @@
 		9E86E98F1D9D65F800D82A5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Messages Icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				INFOPLIST_FILE = CharacterSticker/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalk.CharacterSticker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -454,7 +454,7 @@
 		9E86E9901D9D65F800D82A5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Messages Icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				INFOPLIST_FILE = CharacterSticker/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = org.Harekaze.KokoWalk.CharacterSticker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
