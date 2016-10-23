@@ -36,6 +36,7 @@
 
 import SpriteKit
 import GameplayKit
+import UIKit
 
 class NaginataScene: SKScene {
 
@@ -51,12 +52,18 @@ class NaginataScene: SKScene {
 	private var waitingTime: TimeInterval = 0
 	private var suicaInterval: TimeInterval = 2
 
+	private var impactFeedbackGenerator: Any?
+
 	let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -270, highestValue: 170)
 
 
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
 			super.sceneDidLoad()
+			impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+			if let impactFeedbackGenerator = impactFeedbackGenerator as? UIImpactFeedbackGenerator {
+				impactFeedbackGenerator.prepare()
+			}
 		}
 		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
 		self.suicaNode = self.childNode(withName: "//suica") as? SKSpriteNode
@@ -124,6 +131,13 @@ class NaginataScene: SKScene {
 				continue
 			}
 
+			// Attack feedback
+			if #available(iOS 10.0, *) {
+				if let impactFeedbackGenerator = impactFeedbackGenerator as? UIImpactFeedbackGenerator {
+					impactFeedbackGenerator.impactOccurred()
+				}
+			}
+			
 			// Attack action
 			let flip = position.x * characterNode.xScale > 0
 			if flip {
