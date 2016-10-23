@@ -41,6 +41,10 @@ import UIKit
 class NaginataScene: SKScene {
 
 	var totalPoint: Int = 0
+	var isFinished: Bool = false
+	var fullCombo: Bool {
+		return isFinished && suicaCount == comboCount
+	}
 
 	private var characterNode: SKSpriteNode!
 	private var suicaNode: SKSpriteNode!
@@ -51,6 +55,8 @@ class NaginataScene: SKScene {
 	private var lastUpdateTime: TimeInterval = 0
 	private var waitingTime: TimeInterval = 0
 	private var suicaInterval: TimeInterval = 2
+	private var suicaCount: Int = 0
+	private var comboCount: Int = 0
 
 	private var impactFeedbackGenerator: Any?
 
@@ -115,6 +121,7 @@ class NaginataScene: SKScene {
 			if self.children.filter({$0.name == "activeSuica"}).count == 0 {
 				self.characterNode.texture = SKTexture(imageNamed: actionImages[self.doujouMode]![0])
 				self.isPaused = true
+				self.isFinished = true
 			}
 			return
 		}
@@ -168,15 +175,18 @@ class NaginataScene: SKScene {
 			guard let created = suica.userData?["created"] as? Date else { continue }
 			let point: Double
 			if #available(iOS 10.0, *) {
-				point = (1.6 - DateInterval(start: created, end: Date()).duration) * 1000
+				point = (1.6 - DateInterval(start: created, end: Date()).duration) * (1000 + Double(comboCount))
 			} else {
-				point = (1.6 - Date().timeIntervalSince(created)) * 1000
+				point = (1.6 - Date().timeIntervalSince(created)) * (1000 + Double(comboCount))
 			}
 			totalPoint += Int(point)
 
 			// Check first attack
 			if suica.action(forKey: "SuicaJoin") == nil { continue }
 			suica.removeAction(forKey: "SuicaJoin")
+
+			comboCount += 1
+
 			let direction: String
 			if suica.position.x < 0 {
 				direction = "Left"
@@ -198,6 +208,7 @@ class NaginataScene: SKScene {
 		if let suica = self.suicaNode.copy() as? SKSpriteNode {
 			suica.userData = ["created": Date()]
 			suica.name = "activeSuica"
+			self.suicaCount += 1
 
 			let direction: String
 			let xSide: CGFloat
@@ -213,6 +224,9 @@ class NaginataScene: SKScene {
 			suica.run(SKAction.sequence([
 				SKAction.init(named: "Suica\(direction)In")!,
 				SKAction.init(named: "Suica\(direction)Out")!,
+				SKAction.run({
+					self.comboCount = 0
+				}),
 				SKAction.removeFromParent()
 				])
 				, withKey: "SuicaJoin")
