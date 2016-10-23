@@ -88,6 +88,10 @@ class NaginataScene: SKScene {
 		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
 		// Set character image
 		self.characterNode.texture = SKTexture(imageNamed: actionImages[self.doujouMode]![0])
+		if self.doujouMode != "menu_item_mariko_doujou" {
+			characterNode.size = CGSize(width: 252, height: 477.75)
+			characterNode.position = CGPoint(x: 0, y: -113.125)
+		}
 		self.suicaNode = self.childNode(withName: "//suica") as? SKSpriteNode
 		self.countdownLabel = self.childNode(withName: "//countdown") as? SKLabelNode
 		self.pointLabel = self.childNode(withName: "//point") as? SKLabelNode
