@@ -56,6 +56,15 @@ class NaginataScene: SKScene {
 
 	let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -270, highestValue: 170)
 
+	var doujouMode: String!
+	// TODO: create class for this state control
+	let actionImages: [String: [String]] = [
+		"menu_item_mariko_doujou": ["ojisan_def", "ojisan_middle", "ojisan_up"],
+		"menu_item_mei_doujou": ["may_waki", "uttyae1", "uttyae2"],
+		"menu_item_koko_doujou": ["tettere_", "orya", "orya"],
+		//"menu_item_koko_doujou_hard": [],
+		//"menu_item_oyabun_doujou": [],
+	]
 
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
@@ -77,6 +86,8 @@ class NaginataScene: SKScene {
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
 		self.characterNode = self.childNode(withName: "//ojisan") as? SKSpriteNode
+		// Set character image
+		self.characterNode.texture = SKTexture(imageNamed: actionImages[self.doujouMode]![0])
 		self.suicaNode = self.childNode(withName: "//suica") as? SKSpriteNode
 		self.countdownLabel = self.childNode(withName: "//countdown") as? SKLabelNode
 		self.pointLabel = self.childNode(withName: "//point") as? SKLabelNode
@@ -98,7 +109,7 @@ class NaginataScene: SKScene {
 
 		if time < 0 {
 			if self.children.filter({$0.name == "activeSuica"}).count == 0 {
-				characterNode.texture = SKTexture(imageNamed: "ojisan_def")
+				self.characterNode.texture = SKTexture(imageNamed: actionImages[self.doujouMode]![0])
 				self.isPaused = true
 			}
 			return
@@ -144,9 +155,9 @@ class NaginataScene: SKScene {
 				characterNode.run(SKAction.scaleX(by: -1, y: 1, duration: 0))
 			}
 			characterNode.run(SKAction.sequence([
-				randomY.nextBool() ? SKAction.setTexture(SKTexture(imageNamed: "ojisan_middle")) : SKAction.setTexture(SKTexture(imageNamed: "ojisan_up")),
+				randomY.nextBool() ? SKAction.setTexture(SKTexture(imageNamed: actionImages[self.doujouMode]![1])) : SKAction.setTexture(SKTexture(imageNamed: actionImages[self.doujouMode]![2])),
 				SKAction.wait(forDuration: 0.3),
-				SKAction.setTexture(SKTexture(imageNamed: "ojisan_def"))
+				SKAction.setTexture(SKTexture(imageNamed: actionImages[self.doujouMode]![0]))
 				]))
 
 			// Add attack point

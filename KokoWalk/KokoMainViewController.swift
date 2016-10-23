@@ -50,8 +50,8 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		"menu_item_siro",
 		"menu_item_zona",
 		"menu_item_mariko_doujou",
-//		"menu_item_mei_doujou",
-//		"menu_item_koko_doujou",
+		"menu_item_mei_doujou",
+		"menu_item_koko_doujou",
 //		"menu_item_koko_doujou_hard",
 //		"menu_item_oyabun_doujou",
 		"menu_item_nop",
@@ -61,6 +61,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 	// MARK: Private instance fields
 	private var gameScene: GameScene!
+	private var doujouMode: String!
 
 	// MARK: Interface Builder outlets
 
@@ -199,10 +200,22 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		}
 
 		if name.hasSuffix("doujou") {
+			doujouMode = name
 			performSegue(withIdentifier: "NaginataSegue", sender: self)
 		} else {
 			gameScene.addCharacter(name: name)
 		}
 	}
 
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		super.prepare(for: segue, sender: sender)
+		if let identifier = segue.identifier {
+			if identifier == "NaginataSegue" {
+				if let naginataDojo = segue.destination as? NaginataDojoViewController {
+					naginataDojo.doujouMode = self.doujouMode
+				}
+			}
+		}
+	}
 }

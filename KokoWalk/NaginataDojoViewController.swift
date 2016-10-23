@@ -46,6 +46,9 @@ class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelega
 	private lazy var localPlayer = GKLocalPlayer.localPlayer()
 	private var leaderboardIdentifier = ""
 
+	// MARK: Public fields
+	var doujouMode: String!
+
 	// MARK: Interface Builder actions
 
 	@IBAction func handleExitButton(_ sender: UIButton) {
@@ -142,8 +145,11 @@ class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelega
 
 		if #available(iOS 10.0, *) {
 			if let scene = GKScene(fileNamed: "NaginataScene") {
-				if let sceneNode = scene.rootNode as! NaginataScene? {
+				if let sceneNode = scene.rootNode as? NaginataScene {
 					sceneNode.scaleMode = .aspectFill
+
+					// Set doujouMode
+					sceneNode.doujouMode = self.doujouMode
 
 					if let view = self.view as! SKView? {
 						view.presentScene(sceneNode)
@@ -154,6 +160,11 @@ class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelega
 		} else {
 			if let sceneNode = GameScene(fileNamed:"NaginataScene") {
 				sceneNode.scaleMode = .aspectFill
+
+				if let sceneNode = sceneNode.scene as? NaginataScene {
+					// Set doujouMode
+					sceneNode.doujouMode = self.doujouMode
+				}
 
 				if let view = self.view as! SKView? {
 					view.presentScene(sceneNode)
