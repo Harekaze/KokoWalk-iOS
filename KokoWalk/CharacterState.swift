@@ -44,11 +44,11 @@ let actionImages: [String: [String]] = [
 	"menu_item_koko": ["asisu", "hai", "koko_def", "koko_meshi", "koko_sensei", "koko_uta", "koko_zinb", "koko_zinbabue2", "kokomi_4", "kokotto", "naki_B1", "naki_B2", "orya", "ra_men", "sengen", "tettere_", "zinbabues"],
 	"menu_item_mi": ["doitujin", "doitujin_", "doitujin2"],
 	"menu_item_siro": ["siro_oko", "siro_same1", "siro_same2", "mayone-zu", "mayo2"],
-	"menu_item_zona": ["zona_p"],
+	"menu_item_zona": ["zona_p", "imozona"],
 	"menu_item_irizaki": ["koufun", "may_p", "may_waki", "uttyae1", "uttyae2"],
 	"menu_item_mike": ["mike_banana", "mike_boushi", "mike_hai"],
-	"menu_item_maron": ["maron_maron", "motto_teyande", "teyande"]
-
+	"menu_item_maron": ["maron_maron", "motto_teyande", "teyande"],
+	"menu_item_minami": ["minami_drag", "minami_vitamin"]
 ]
 
 let walk: [String: String] = [
@@ -58,7 +58,8 @@ let walk: [String: String] = [
 	"menu_item_zona": "ZonaWalk",
 	"menu_item_irizaki": "MayWalk",
 	"menu_item_mike": "MikeWalk",
-	"menu_item_maron": "MaronWalk"
+	"menu_item_maron": "MaronWalk",
+	"menu_item_minami": "MinamiWalk"
 ]
 
 

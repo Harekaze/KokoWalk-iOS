@@ -69,7 +69,7 @@ class NaginataScene: SKScene {
 		"menu_item_mei_doujou": ["may_waki", "uttyae1", "uttyae2"],
 		"menu_item_koko_doujou": ["tettere_", "orya", "orya"],
 		//"menu_item_koko_doujou_hard": [],
-		//"menu_item_oyabun_doujou": [],
+		"menu_item_oyabun_doujou": ["oyabun", "oyabun2", "oyabun3"],
 	]
 
 	override func sceneDidLoad() {
