@@ -68,7 +68,7 @@ class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelega
 				UIGraphicsEndImageContext()
 				shareCompose.add(image)
 				shareCompose.add(URL(string: "https://harekaze.org/KokoWalk-iOS/")!)
-				shareCompose.setInitialText("KokoWalk for iOSの薙刀道場で\(naginataScene.totalPoint)pt獲得しました！ #KokoWalk #NaginataScore")
+				shareCompose.setInitialText("KokoWalk for iOSの薙刀道場で\(naginataScene.totalPoint)pt獲得しました！ #KokoWalk #NaginataScore3")
 				self.present(shareCompose, animated: true)
 			} else {
 				self.present(UIAlertController(title: "エラー", message: "Twitter共有がサポートされていません。", preferredStyle: .alert), animated: true)
@@ -103,6 +103,38 @@ class NaginataDojoViewController: UIViewController, GKGameCenterControllerDelega
 							let score = GKScore(leaderboardIdentifier: self.leaderboardIdentifier, player: self.localPlayer)
 							score.value = Int64(naginataScene.totalPoint)
 							GKScore.report([score])
+							var achievements: [GKAchievement] = []
+
+							if naginataScene.maxComboCount >= 56 {
+								let achievement = GKAchievement(identifier: "56_combo")
+								if !achievement.isCompleted {
+									achievement.percentComplete = 100
+									achievement.showsCompletionBanner = true
+									achievements.append(achievement)
+								}
+							}
+
+							if naginataScene.fullCombo {
+								if naginataScene.doujouMode == "menu_item_mariko_doujou" {
+									let achievement = GKAchievement(identifier: "ojisan_fullcombo")
+									if !achievement.isCompleted {
+										achievement.percentComplete = 100
+										achievement.showsCompletionBanner = true
+										achievements.append(achievement)
+									}
+								} else if naginataScene.doujouMode == "menu_item_mei_doujou" {
+									let achievement = GKAchievement(identifier: "mei_fullcombo")
+									if !achievement.isCompleted {
+										achievement.percentComplete = 100
+										achievement.showsCompletionBanner = true
+										achievements.append(achievement)
+									}
+								}
+							}
+
+							if !achievements.isEmpty {
+								GKAchievement.report(achievements)
+							}
 
 							let gameCenterController = GKGameCenterViewController()
 							gameCenterController.gameCenterDelegate = self

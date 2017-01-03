@@ -57,6 +57,7 @@ class NaginataScene: SKScene {
 	private var suicaInterval: TimeInterval = 2
 	private var suicaCount: Int = 0
 	private var comboCount: Int = 0
+	var maxComboCount: Int = 0
 
 	private let fluctuation = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -200, highestValue: 100)
 
@@ -188,6 +189,7 @@ class NaginataScene: SKScene {
 			suica.removeAction(forKey: "SuicaJoin")
 
 			comboCount += 1
+			maxComboCount = max(maxComboCount, comboCount)
 
 			let direction: String
 			if suica.position.x < 0 {
