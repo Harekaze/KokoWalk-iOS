@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wCh-1G-hHx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wCh-1G-hHx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,8 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y60-gY-3sg" customClass="SKView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yY7-3X-jmV">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="96" id="8b1-HY-ms3"/>
                                             <constraint firstAttribute="height" constant="48" id="ebf-qB-Ib6"/>
@@ -32,6 +37,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UcW-5e-YdA">
+                                        <rect key="frame" x="256" y="545" width="111" height="30"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="DpT-yN-Gpn"/>
@@ -51,7 +57,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="yY7-3X-jmV" firstAttribute="leading" secondItem="Y60-gY-3sg" secondAttribute="leading" id="Ats-Nd-DmY"/>
                                     <constraint firstItem="yY7-3X-jmV" firstAttribute="top" secondItem="Y60-gY-3sg" secondAttribute="top" id="b8I-4C-He2"/>
@@ -60,6 +66,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dxl-Ds-5fw">
+                                <rect key="frame" x="0.0" y="583" width="375" height="84"/>
                                 <color key="backgroundColor" red="0.1647058824" green="0.050980392159999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="iIE-tv-01d"/>
@@ -78,7 +85,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mlp-Ms-pkJ"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mlp-Ms-pkJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -99,7 +108,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dxl-Ds-5fw" firstAttribute="top" secondItem="Y60-gY-3sg" secondAttribute="bottom" id="7ik-r9-7D9"/>
                             <constraint firstAttribute="trailing" secondItem="dxl-Ds-5fw" secondAttribute="trailing" id="LZJ-o3-0Dj"/>
@@ -135,6 +144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1r-bD-3GV">
+                                <rect key="frame" x="229.5" y="20" width="48" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="d7i-Fx-MfE"/>
                                     <constraint firstAttribute="height" constant="22" id="hOG-0j-wqM"/>
@@ -150,6 +160,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLR-gF-QPG">
+                                <rect key="frame" x="381.5" y="20" width="64" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="LEf-zR-jfl"/>
                                     <constraint firstAttribute="width" constant="64" id="sKY-JK-UQc"/>
