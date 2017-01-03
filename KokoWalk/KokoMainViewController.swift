@@ -37,8 +37,9 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
-class KokoMainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class KokoMainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, AVCaptureVideoDataOutputSampleBufferDelegate {
 
 	// MARK: Private constant values
 	private let dataSource: [String] = [
@@ -58,11 +59,17 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		"menu_item_nop",
 		"menu_item_nop",
 		"menu_item_nop",
+		"menu_item_camera",
 	]
 
 	// MARK: Private instance fields
 	private var gameScene: GameScene!
 	private var doujouMode: String!
+
+	private var session: AVCaptureSession!
+	private var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+	private var stillImageOutput: AVCaptureStillImageOutput!
+	private var device: AVCaptureDevice!
 
 	// MARK: Interface Builder outlets
 
@@ -163,6 +170,42 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		return true
 	}
 
+	// MARK: Cemera Setup
+
+	func setupCamera() {
+		session = AVCaptureSession()
+		session.sessionPreset = AVCaptureSessionPreset3840x2160
+		device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+
+		let input = try! AVCaptureDeviceInput(device: device)
+		session.addInput(input)
+		stillImageOutput = AVCaptureStillImageOutput()
+		session.addOutput(stillImageOutput)
+
+		videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
+		videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+		videoPreviewLayer.connection.videoOrientation = .portrait
+		videoPreviewLayer.masksToBounds = true
+
+		DispatchQueue.global().async {
+			self.session.startRunning()
+		}
+		videoPreviewLayer.frame = self.view.bounds
+		self.view.layer.insertSublayer(videoPreviewLayer, at: 0)
+	}
+
+	func destroyCamera() {
+		session.stopRunning()
+		for output in session.outputs as! [AVCaptureOutput] {
+			session.removeOutput(output)
+		}
+		for input in session.inputs as! [AVCaptureInput] {
+			session.removeInput(input)
+		}
+		session = nil
+		device = nil
+	}
+
 
 	// MARK: UICollectionViewDataSource
 
@@ -196,6 +239,21 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		if name == "menu_item_nop" {
 			return
 		}
+		if name == "menu_item_camera" {
+			if session == nil {
+				setupCamera()
+				gameScene.clockMode = false
+				clearButton.isHidden = true
+				washimoiruzoButton.alpha = 0
+			} else {
+				destroyCamera()
+				gameScene.clockMode = true
+			}
+			let background = gameScene.childNode(withName: "//Background") as? SKSpriteNode
+			background?.isHidden = !gameScene.clockMode
+
+			return
+		}
 		if name == "menu_item_koko" {
 			washimoiruzoButton.isHidden = false
 		}
@@ -216,6 +274,29 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 				if let naginataDojo = segue.destination as? NaginataDojoViewController {
 					naginataDojo.doujouMode = self.doujouMode
 				}
+			}
+		}
+	}
+
+	// MARK: Touch events
+
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		if session != nil {
+			if let connection:AVCaptureConnection? = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
+				stillImageOutput.captureStillImageAsynchronously(from: connection, completionHandler: { (imageDataBuffer, error) -> Void in
+					let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataBuffer) as Data
+					let photo = UIImage(data: imageData)!
+
+					let rect = CGRect(origin: .zero, size: self.sceneView.scene!.size)
+					UIGraphicsBeginImageContext(rect.size)
+					photo.draw(in: rect)
+					self.sceneView.drawHierarchy(in: rect, afterScreenUpdates: true)
+
+					let image = UIGraphicsGetImageFromCurrentImageContext()
+					UIGraphicsEndImageContext()
+
+					UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+				})
 			}
 		}
 	}

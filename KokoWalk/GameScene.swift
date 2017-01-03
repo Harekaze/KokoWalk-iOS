@@ -102,6 +102,7 @@ class GameScene: SKScene {
 			swipeGesture.direction = direction
 			self.view?.addGestureRecognizer(swipeGesture)
 		}
+		self.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 
 		// MARK: FOR IOS9 SUPPORT
 		
@@ -133,6 +134,16 @@ class GameScene: SKScene {
 		}
 	}
 
+
+	// MARK: Observer
+
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if keyPath == "clockMode" {
+			self.dateLabel.isHidden = !self.clockMode
+			self.timeLabel.isHidden = !self.clockMode
+			self.secondsLabel.isHidden = !self.clockMode
+		}
+	}
 
 	// MARK: Character addition
 
@@ -193,9 +204,9 @@ class GameScene: SKScene {
 	// MARK: Touch events
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		self.dateLabel.isHidden = self.clockMode
-		self.timeLabel.isHidden = self.clockMode
-		self.secondsLabel.isHidden = self.clockMode
-		self.clockMode = !self.clockMode
+		let background = self.childNode(withName: "//Background") as! SKSpriteNode
+		if !background.isHidden {
+			self.clockMode = !self.clockMode
+		}
 	}
 }
