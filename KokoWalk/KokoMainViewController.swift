@@ -259,6 +259,12 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		}
 
 		if name.hasSuffix("doujou") {
+			if session != nil {
+				destroyCamera()
+				gameScene.clockMode = true
+				let background = gameScene.childNode(withName: "//Background") as? SKSpriteNode
+				background?.isHidden = false
+			}
 			doujouMode = name
 			performSegue(withIdentifier: "NaginataSegue", sender: self)
 		} else {
