@@ -58,6 +58,8 @@ class NaginataScene: SKScene {
 	private var suicaCount: Int = 0
 	private var comboCount: Int = 0
 
+	private let fluctuation = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -200, highestValue: 100)
+
 	private var impactFeedbackGenerator: Any?
 
 	let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -270, highestValue: 170)
@@ -175,9 +177,9 @@ class NaginataScene: SKScene {
 			guard let created = suica.userData?["created"] as? Date else { continue }
 			let point: Double
 			if #available(iOS 10.0, *) {
-				point = (1.6 - DateInterval(start: created, end: Date()).duration) * (1000 + Double(comboCount))
+				point = (1.6 - DateInterval(start: created, end: Date()).duration) * (1000 + Double(comboCount * 10))
 			} else {
-				point = (1.6 - Date().timeIntervalSince(created)) * (1000 + Double(comboCount))
+				point = (1.6 - Date().timeIntervalSince(created)) * (1000 + Double(comboCount * 10))
 			}
 			totalPoint += Int(point)
 
@@ -254,6 +256,7 @@ class NaginataScene: SKScene {
 		default:
 			suicaInterval = 0.56
 		}
+		suicaInterval += TimeInterval(fluctuation.nextInt() / 1000)
 	}
 
 	// MARK: Touch events
