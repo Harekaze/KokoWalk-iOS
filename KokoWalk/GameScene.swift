@@ -49,6 +49,8 @@ class GameScene: SKScene {
 	private var timeLabel: SKLabelNode!
 	private var secondsLabel: SKLabelNode!
 	private var secondsDateFormatter: DateFormatter!
+	private let backgroundTextures = ["masiro_room", "kankyou2", "housui_room"]
+	private var textureIndex = 0
 
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
@@ -79,10 +81,30 @@ class GameScene: SKScene {
 		self.secondsDateFormatter.dateFormat = "ss"
 	}
 
-	// MARK: FOR IOS9 SUPPORT
+	func changeBackground(gesture: UISwipeGestureRecognizer) {
+		switch gesture.direction {
+		case UISwipeGestureRecognizerDirection.right:
+			self.textureIndex += 1
+		case UISwipeGestureRecognizerDirection.left:
+			self.textureIndex += self.backgroundTextures.count - 1
+		default:
+			break
+		}
+		self.textureIndex %= self.backgroundTextures.count
+		let background = self.childNode(withName: "//Background") as? SKSpriteNode
+		background?.texture = SKTexture(imageNamed: self.backgroundTextures[self.textureIndex])
+	}
 
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
+		for direction: UISwipeGestureRecognizerDirection in [.right, .left] {
+			let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeBackground))
+			swipeGesture.direction = direction
+			self.view?.addGestureRecognizer(swipeGesture)
+		}
+
+		// MARK: FOR IOS9 SUPPORT
+		
 		if #available(iOS 10.0, *) {} else {
 			self.characterNode = SKSpriteNode(imageNamed: "asisu")
 
