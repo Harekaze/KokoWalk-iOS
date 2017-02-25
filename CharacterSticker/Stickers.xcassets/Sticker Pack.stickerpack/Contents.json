@@ -1,28 +1,82 @@
 {
   "stickers" : [
     {
-      "filename" : "koufun.sticker"
+      "filename" : "koko_aisu.sticker"
     },
     {
-      "filename" : "zona_p.sticker"
+      "filename" : "koko_def.sticker"
     },
     {
-      "filename" : "hai.sticker"
+      "filename" : "koko_denwa_naki.sticker"
     },
     {
-      "filename" : "washimoikou2.sticker"
+      "filename" : "koko_denwa.sticker"
     },
     {
-      "filename" : "teyande.sticker"
+      "filename" : "koko_good.sticker"
     },
     {
-      "filename" : "mike_boushi.sticker"
+      "filename" : "koko_hai.sticker"
     },
     {
-      "filename" : "siro_oko.sticker"
+      "filename" : "koko_karashi.sticker"
     },
     {
-      "filename" : "suica.sticker"
+      "filename" : "koko_kumori.sticker"
+    },
+    {
+      "filename" : "koko_meshi.sticker"
+    },
+    {
+      "filename" : "koko_naki_B1.sticker"
+    },
+    {
+      "filename" : "koko_neibi_.sticker"
+    },
+    {
+      "filename" : "koko_orya-.sticker"
+    },
+    {
+      "filename" : "koko_ra-.sticker"
+    },
+    {
+      "filename" : "koko_same.sticker"
+    },
+    {
+      "filename" : "koko_sengen.sticker"
+    },
+    {
+      "filename" : "koko_sensei.sticker"
+    },
+    {
+      "filename" : "koko_shot1.sticker"
+    },
+    {
+      "filename" : "koko_tettere.sticker"
+    },
+    {
+      "filename" : "koko_uta.sticker"
+    },
+    {
+      "filename" : "koko_zin2_naki.sticker"
+    },
+    {
+      "filename" : "koko_zinb.sticker"
+    },
+    {
+      "filename" : "koko_zinbabue2.sticker"
+    },
+    {
+      "filename" : "koko_zinbabues.sticker"
+    },
+    {
+      "filename" : "kokomi.sticker"
+    },
+    {
+      "filename" : "kokomi2.sticker"
+    },
+    {
+      "filename" : "koko_walk.stickersequence"
     }
   ],
   "info" : {
