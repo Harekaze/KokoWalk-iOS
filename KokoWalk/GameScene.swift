@@ -49,7 +49,7 @@ class GameScene: SKScene {
 	private var timeLabel: SKLabelNode!
 	private var secondsLabel: SKLabelNode!
 	private var secondsDateFormatter: DateFormatter!
-	private let backgroundTextures = ["masiro_room", "kankyou2", "housui_room"]
+	private let backgroundTextures = ["masiro_room", "kankyo_full", "housuijo", "kanpan"]
 	private var textureIndex = 0
 
 	override func sceneDidLoad() {

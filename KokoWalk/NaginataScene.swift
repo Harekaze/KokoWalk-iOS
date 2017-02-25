@@ -68,9 +68,9 @@ class NaginataScene: SKScene {
 	var doujouMode: String!
 	// TODO: create class for this state control
 	let actionImages: [String: [String]] = [
-		"menu_item_mariko_doujou": ["ojisan_def", "ojisan_middle", "ojisan_up"],
-		"menu_item_mei_doujou": ["may_waki", "uttyae1", "uttyae2"],
-		"menu_item_koko_doujou": ["tettere_", "orya", "orya"],
+		"menu_item_mariko_doujou": ["marikoojisan_doujou", "marikoojisan_tyudan", "marikoojisan_joudan"],
+		"menu_item_mei_doujou": ["may_waki", "may_uttyae1", "may_uttyae2"],
+		"menu_item_koko_doujou": ["koko_naki_B1", "koko_shot1", "koko_shot2"],
 		//"menu_item_koko_doujou_hard": [],
 		"menu_item_oyabun_doujou": ["oyabun", "oyabun2", "oyabun3"],
 	]

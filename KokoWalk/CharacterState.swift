@@ -41,25 +41,33 @@ let randomX = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestVal
 let randomY = GKRandomDistribution(randomSource: GKARC4RandomSource(), lowestValue: -400, highestValue: -50)
 
 let actionImages: [String: [String]] = [
-	"menu_item_koko": ["asisu", "hai", "koko_def", "koko_meshi", "koko_sensei", "koko_uta", "koko_zinb", "koko_zinbabue2", "kokomi_4", "kokotto", "naki_B1", "naki_B2", "orya", "ra_men", "sengen", "tettere_", "zinbabues"],
-	"menu_item_mi": ["doitujin", "doitujin_", "doitujin2"],
-	"menu_item_siro": ["siro_oko", "siro_same1", "siro_same2", "mayone-zu", "mayo2"],
-	"menu_item_zona": ["zona_p", "imozona"],
-	"menu_item_irizaki": ["koufun", "may_p", "may_waki", "uttyae1", "uttyae2"],
+    "menu_item_ise": ["ise_chichi", "ise_ufufu"],
+	"menu_item_koko": ["koko_aisu", "koko_def", "koko_denwa", "koko_denwa_naki", "koko_good", "koko_hai", "koko_karashi", "koko_kumori", "koko_meshi", "koko_naki_B1", "koko_neibi_", "koko_orya-", "koko_ra-", "koko_same", "koko_sengen", "koko_sensei", "koko_shot1", "koko_tettere", "koko_uta", "koko_zin2_naki", "koko_zinb", "koko_zinbabue2", "koko_zinbabues", "kokomi", "kokomi2"],
+	"menu_item_maron": ["maron_maron", "maron_teyande_0", "maron_teyande_1"],
+	"menu_item_irizaki": ["may_koufun", "may_p", "may_uttyae_1", "may_uttyae_2", "may_waki"],
+	"menu_item_mi": ["mi_koko", "mi_oko", "mi_same", "washimoikou", "washimoikou2"],
+	"menu_item_mikan": ["mikan_katsu", "mikan_keki", "mikan_sasimi"],
 	"menu_item_mike": ["mike_banana", "mike_boushi", "mike_hai"],
-	"menu_item_maron": ["maron_maron", "motto_teyande", "teyande"],
-	"menu_item_minami": ["minami_drag", "minami_vitamin"]
+	"menu_item_minami": ["minami_drag", "minami_vitamin"],
+	"menu_item_siro": ["siro_good", "siro_mayo2", "siro_mayone_zu", "siro_mayone_zu_2", "siro_oko", "siro_same_1", "siro_same_2", "siro_soft1"],
+	"menu_item_sora": ["hirotasora1", "hirotasora2", "hirotasora3", "hirotasora4"],
+	"menu_item_tama": ["tama1", "tama2", "tama_hai", "tama_nei", "tama_wi"],
+	"menu_item_zona": ["imozona", "zona_p", "zona_walk0", "zona_walk1", "zona_walk2"],
 ]
 
 let walk: [String: String] = [
 	"menu_item_koko": "KokoWalk",
 	"menu_item_mi": "MiWalk",
+	"menu_item_irizaki": "MayWalk",
+	"menu_item_maron": "MaronWalk",
+	"menu_item_mike": "MikeWalk",
 	"menu_item_siro": "SiroWalk",
 	"menu_item_zona": "ZonaWalk",
-	"menu_item_irizaki": "MayWalk",
-	"menu_item_mike": "MikeWalk",
-	"menu_item_maron": "MaronWalk",
-	"menu_item_minami": "MinamiWalk"
+	"menu_item_minami": "MinamiWalk",
+	"menu_item_mikan": "MikanWalk",
+    "menu_item_ise": "IseWalk",
+    "menu_item_sora": "SoraWalk",
+    "menu_item_tama": "TamaWalk",
 ]
 
 
