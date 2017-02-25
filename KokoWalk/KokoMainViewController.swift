@@ -123,6 +123,12 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 			swipeGesture.direction = direction
 			self.view?.addGestureRecognizer(swipeGesture)
 		}
+		
+		// Indicator action
+		let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(toggleIndicator))
+		swipeGesture.direction = .up
+		self.view?.addGestureRecognizer(swipeGesture)
+
 
 		if #available(iOS 10.0, *) {
 			if let scene = GKScene(fileNamed: "GameScene") {
@@ -197,7 +203,14 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		background.contents = UIImage(named: backgroundTextures[textureIndex])?.cgImage
 	}
 	
-
+	// MARK: Status
+	
+	func toggleIndicator(gesture: UISwipeGestureRecognizer) {
+		sceneView.showsQuadCount = !sceneView.showsQuadCount
+		sceneView.showsFPS = !sceneView.showsFPS
+		washimoiruzoButton.alpha = sceneView.showsFPS ? 0 : 1
+	}
+	
 	// MARK: Device rotation
 
 	override var shouldAutorotate: Bool {
