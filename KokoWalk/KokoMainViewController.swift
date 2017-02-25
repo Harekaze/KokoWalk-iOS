@@ -146,6 +146,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 				sceneView.presentScene(sceneNode)
 				sceneView.ignoresSiblingOrder = true
+				sceneView.allowsTransparency = true
 
 				gameScene.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 			}

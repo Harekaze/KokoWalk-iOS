@@ -52,7 +52,7 @@ class GameScene: SKScene {
 
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
-			self.characterNode = SKSpriteNode(imageNamed: "asisu")
+			self.characterNode = SKSpriteNode(imageNamed: "koko_aisu")
 
 			if let characterNode = self.characterNode {
 				characterNode.position = CGPoint(x: -215, y: 315)
@@ -86,7 +86,7 @@ class GameScene: SKScene {
 		// MARK: FOR IOS9 SUPPORT
 		
 		if #available(iOS 10.0, *) {} else {
-			self.characterNode = SKSpriteNode(imageNamed: "asisu")
+			self.characterNode = SKSpriteNode(imageNamed: "koko_aisu")
 
 			if let characterNode = self.characterNode {
 				characterNode.position = CGPoint(x: -215, y: 315)
