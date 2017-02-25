@@ -71,6 +71,8 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		"menu_item_camera",
 		
 	]
+	private let backgroundTextures = ["masiro_room", "kankyo_full", "housuijo", "kanpan"]
+	private var textureIndex = 0
 
 	// MARK: Private instance fields
 	private var gameScene: GameScene!
@@ -80,6 +82,8 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 	private var videoPreviewLayer: AVCaptureVideoPreviewLayer!
 	private var stillImageOutput: AVCaptureStillImageOutput!
 	private var device: AVCaptureDevice!
+	
+	private var background: CALayer!
 
 	// MARK: Interface Builder outlets
 
@@ -107,6 +111,18 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		super.viewDidLoad()
 
 		self.characterModeCollectionView.delegate = self
+		
+		// Set background image
+        background = CALayer()
+        background.contents = UIImage(named: backgroundTextures[textureIndex])?.cgImage
+        background.frame = CGRect(x: -615 / 4, y: 0, width: 1365 / 2, height: 1365 / 2)
+        self.view.layer.insertSublayer(background, at: 0)
+
+		for direction: UISwipeGestureRecognizerDirection in [.right, .left] {
+			let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeBackground))
+			swipeGesture.direction = direction
+			self.view?.addGestureRecognizer(swipeGesture)
+		}
 
 		if #available(iOS 10.0, *) {
 			if let scene = GKScene(fileNamed: "GameScene") {
@@ -117,6 +133,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 					sceneView.presentScene(sceneNode)
 					sceneView.ignoresSiblingOrder = true
+					sceneView.allowsTransparency = true
 
 					gameScene.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 				}
@@ -163,6 +180,22 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 			washimoiruzoButton.alpha = gameScene.clockMode ? 0 : 1
 		}
 	}
+	
+	// MARK: Background
+	
+	func changeBackground(gesture: UISwipeGestureRecognizer) {
+		switch gesture.direction {
+		case UISwipeGestureRecognizerDirection.right:
+			self.textureIndex += 1
+		case UISwipeGestureRecognizerDirection.left:
+			self.textureIndex += self.backgroundTextures.count - 1
+		default:
+			break
+		}
+		self.textureIndex %= self.backgroundTextures.count
+		background.contents = UIImage(named: backgroundTextures[textureIndex])?.cgImage
+	}
+	
 
 	// MARK: Device rotation
 
@@ -259,8 +292,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 				destroyCamera()
 				gameScene.clockMode = true
 			}
-			let background = gameScene.childNode(withName: "//Background") as? SKSpriteNode
-			background?.isHidden = !gameScene.clockMode
+			background.isHidden = !gameScene.clockMode
 
 			return
 		}
@@ -272,8 +304,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 			if session != nil {
 				destroyCamera()
 				gameScene.clockMode = true
-				let background = gameScene.childNode(withName: "//Background") as? SKSpriteNode
-				background?.isHidden = false
+				background.isHidden = false
 			}
 			doujouMode = name
 			performSegue(withIdentifier: "NaginataSegue", sender: self)
@@ -314,6 +345,8 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 					UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
 				})
 			}
-		}
+        } else {
+			gameScene.clockMode = !gameScene.clockMode
+        }
 	}
 }

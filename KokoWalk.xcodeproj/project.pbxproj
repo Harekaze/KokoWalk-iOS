@@ -86,7 +86,7 @@
 		9E9179591D7B288100D572EA /* KokoWalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KokoWalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E91795D1D7B288100D572EA /* KokoWalkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KokoWalkUITests.swift; sourceTree = "<group>"; };
 		9E91795F1D7B288100D572EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E91796B1D7B33D200D572EA /* KokoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KokoMainViewController.swift; sourceTree = "<group>"; };
+		9E91796B1D7B33D200D572EA /* KokoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KokoMainViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		9E91796D1D7B34DD00D572EA /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		9ED635781D9D4D6300624317 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		9EF5D3E21D86B56B009E66BF /* NaginataScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = NaginataScene.sks; sourceTree = "<group>"; };

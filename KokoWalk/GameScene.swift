@@ -49,8 +49,6 @@ class GameScene: SKScene {
 	private var timeLabel: SKLabelNode!
 	private var secondsLabel: SKLabelNode!
 	private var secondsDateFormatter: DateFormatter!
-	private let backgroundTextures = ["masiro_room", "kankyo_full", "housuijo", "kanpan"]
-	private var textureIndex = 0
 
 	override func sceneDidLoad() {
 		if #available(iOS 10.0, *) {
@@ -81,27 +79,8 @@ class GameScene: SKScene {
 		self.secondsDateFormatter.dateFormat = "ss"
 	}
 
-	func changeBackground(gesture: UISwipeGestureRecognizer) {
-		switch gesture.direction {
-		case UISwipeGestureRecognizerDirection.right:
-			self.textureIndex += 1
-		case UISwipeGestureRecognizerDirection.left:
-			self.textureIndex += self.backgroundTextures.count - 1
-		default:
-			break
-		}
-		self.textureIndex %= self.backgroundTextures.count
-		let background = self.childNode(withName: "//Background") as? SKSpriteNode
-		background?.texture = SKTexture(imageNamed: self.backgroundTextures[self.textureIndex])
-	}
-
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
-		for direction: UISwipeGestureRecognizerDirection in [.right, .left] {
-			let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(changeBackground))
-			swipeGesture.direction = direction
-			self.view?.addGestureRecognizer(swipeGesture)
-		}
 		self.addObserver(self, forKeyPath: "clockMode", options: [.new], context: nil)
 
 		// MARK: FOR IOS9 SUPPORT
@@ -199,14 +178,5 @@ class GameScene: SKScene {
 		self.dateLabel.text = DateFormatter.localizedString(from: now, dateStyle: .medium, timeStyle: .none)
 		self.timeLabel.text = DateFormatter.localizedString(from: now, dateStyle: .none, timeStyle: .short)
 		self.secondsLabel.text = self.secondsDateFormatter.string(from: now)
-	}
-
-	// MARK: Touch events
-
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		let background = self.childNode(withName: "//Background") as! SKSpriteNode
-		if !background.isHidden {
-			self.clockMode = !self.clockMode
-		}
 	}
 }
