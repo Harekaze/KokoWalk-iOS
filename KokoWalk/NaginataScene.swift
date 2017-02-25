@@ -201,7 +201,7 @@ class NaginataScene: SKScene {
 				SKAction.init(named: "Suica\(direction)Out")!,
 				SKAction.removeFromParent(),
 				SKAction.run {
-					self.pointLabel.text = String(format: "%dpt (ver 3.0)", arguments: [self.totalPoint])
+					self.pointLabel.text = String(format: "%dpt (ver 3.1)", arguments: [self.totalPoint])
 				}
 				])
 			)

@@ -17,7 +17,7 @@ Android携帯を持っていなかったので移植する形となりました�
 このリポジトリでは、リソースの含まれない、コード部の実装のみをオープンソースとして航海しています。
 
 ## Version
-3.0.0 build-1
+3.1.0 build-1
 
 ## LICENSE
 [Modified BSD 3-clause License](LICENSE.md)
