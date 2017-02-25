@@ -259,6 +259,8 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 		for input in session.inputs as! [AVCaptureInput] {
 			session.removeInput(input)
 		}
+		videoPreviewLayer.removeFromSuperlayer()
+		videoPreviewLayer = nil
 		session = nil
 		device = nil
 	}
