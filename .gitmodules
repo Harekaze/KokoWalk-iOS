@@ -1,0 +1,4 @@
+[submodule "ref"]
+	path = ref
+	url = https://github.com/ShitamatsugeFactory/KokoWalk.git
+	branch = image_for_ios
