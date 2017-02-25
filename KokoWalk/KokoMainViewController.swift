@@ -231,7 +231,7 @@ class KokoMainViewController: UIViewController, UICollectionViewDelegate, UIColl
 
 	func setupCamera() {
 		session = AVCaptureSession()
-		session.sessionPreset = AVCaptureSessionPreset3840x2160
+		session.sessionPreset = AVCaptureSessionPreset1920x1080
 		device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
 
 		let input = try! AVCaptureDeviceInput(device: device)
